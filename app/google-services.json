@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1052052205715",
+    "project_id": "instagram-clone-subhajit",
+    "storage_bucket": "instagram-clone-subhajit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052052205715:android:93a9c2f2e1ab00f7ffdd66",
+        "android_client_info": {
+          "package_name": "com.subhajitrajak.instagramclone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd5PqFuRAlRY2vmmbDaZkN3N8D2zHbdHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
