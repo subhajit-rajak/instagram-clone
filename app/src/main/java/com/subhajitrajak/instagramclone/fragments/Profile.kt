@@ -13,7 +13,7 @@ import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import com.subhajitrajak.instagramclone.Models.User
 import com.subhajitrajak.instagramclone.Signup
-import com.subhajitrajak.instagramclone.Utils.USER_NODE
+import com.subhajitrajak.instagramclone.utils.USER_NODE
 import com.subhajitrajak.instagramclone.adapters.ViewPagerAdapter
 import com.subhajitrajak.instagramclone.databinding.FragmentProfileBinding
 

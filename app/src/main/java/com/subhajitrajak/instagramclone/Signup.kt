@@ -1,5 +1,6 @@
 package com.subhajitrajak.instagramclone
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
@@ -16,11 +17,10 @@ import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import com.subhajitrajak.instagramclone.Models.User
-import com.subhajitrajak.instagramclone.Utils.USER_NODE
-import com.subhajitrajak.instagramclone.Utils.USER_PROFILE_FOLDER
-import com.subhajitrajak.instagramclone.Utils.uploadImage
+import com.subhajitrajak.instagramclone.utils.USER_NODE
+import com.subhajitrajak.instagramclone.utils.USER_PROFILE_FOLDER
+import com.subhajitrajak.instagramclone.utils.uploadImage
 import com.subhajitrajak.instagramclone.databinding.ActivitySignupBinding
-import com.subhajitrajak.instagramclone.fragments.Profile
 
 
 class Signup : AppCompatActivity() {
@@ -39,6 +39,7 @@ class Signup : AppCompatActivity() {
             }
         }
     }
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

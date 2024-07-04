@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.Utils
+package com.subhajitrajak.instagramclone.utils
 
 import android.net.Uri
 import com.google.firebase.storage.FirebaseStorage

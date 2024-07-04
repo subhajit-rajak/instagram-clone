@@ -7,9 +7,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.subhajitrajak.instagramclone.Models.Post
-import com.subhajitrajak.instagramclone.Utils.POST
-import com.subhajitrajak.instagramclone.Utils.POST_FOLDER
-import com.subhajitrajak.instagramclone.Utils.uploadImage
+import com.subhajitrajak.instagramclone.utils.POST
+import com.subhajitrajak.instagramclone.utils.POST_FOLDER
+import com.subhajitrajak.instagramclone.utils.uploadImage
 import com.subhajitrajak.instagramclone.databinding.ActivityPostsBinding
 
 class Posts : AppCompatActivity() {
