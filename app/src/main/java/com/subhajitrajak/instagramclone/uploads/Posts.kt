@@ -40,6 +40,7 @@ class Posts : AppCompatActivity() {
         getSupportActionBar()?.setDisplayShowHomeEnabled(true)
 
         binding.materialToolbar.setNavigationOnClickListener {
+            startActivity(Intent(this@Posts, Home::class.java))
             finish()
         }
         binding.selectImage.setOnClickListener {
