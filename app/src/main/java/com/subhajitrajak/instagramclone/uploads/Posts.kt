@@ -1,11 +1,13 @@
 package com.subhajitrajak.instagramclone.uploads
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.subhajitrajak.instagramclone.Home
 import com.subhajitrajak.instagramclone.Models.Post
 import com.subhajitrajak.instagramclone.utils.POST
 import com.subhajitrajak.instagramclone.utils.POST_FOLDER
@@ -48,6 +50,7 @@ class Posts : AppCompatActivity() {
             val post = Post(imageUrl!!, binding.caption.text.toString())
             Firebase.firestore.collection(POST).document().set(post).addOnSuccessListener {
                 Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).document().set(post).addOnSuccessListener {
+                    startActivity(Intent(this@Posts, Home::class.java))
                     finish()
                 }
             }
