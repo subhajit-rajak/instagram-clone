@@ -11,4 +11,5 @@
     <color name="button">#00A3FF</color>
     <color name="greyButton">#DFDFDF</color>
     <color name="hintColorNote">#4C4C4C</color>
+    <color name="tabLayoutColor">#000000</color>
 </resources>

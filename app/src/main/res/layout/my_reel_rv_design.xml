@@ -5,10 +5,10 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/post_canvas"
+        android:id="@+id/reel_canvas"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:paddingStart="2dp"
-        android:paddingEnd="2dp"
+        android:layout_height="241dp"
+        android:paddingTop="4dp"
         tools:srcCompat="@tools:sample/avatars" />
+
 </LinearLayout>
