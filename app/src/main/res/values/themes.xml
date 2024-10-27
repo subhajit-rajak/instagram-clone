@@ -6,6 +6,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@android:color/white</item>
         <item name="colorPrimary">@color/white</item>
+        <item name="iconTint">@color/black</item>
     </style>
 
     <style name="Theme.InstagramClone" parent="Base.Theme.InstagramClone" />

@@ -21,16 +21,10 @@ class Profile : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var viewPagerAdapter: ViewPagerAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         binding.editProfile.setOnClickListener {
@@ -46,10 +40,6 @@ class Profile : Fragment() {
         binding.tabLayout.setupWithViewPager(binding.viewPager)
 
         return binding.root
-    }
-
-    companion object {
-
     }
 
     override fun onStart() {

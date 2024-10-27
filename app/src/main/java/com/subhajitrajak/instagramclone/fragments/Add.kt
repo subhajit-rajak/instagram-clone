@@ -22,12 +22,11 @@ class Add : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding= FragmentAddBinding.inflate(inflater, container, false)
 
         binding.post.setOnClickListener {
             activity?.startActivity(Intent(requireContext(), Posts::class.java))
-            activity?.finish()
         }
 
         binding.reel.setOnClickListener {

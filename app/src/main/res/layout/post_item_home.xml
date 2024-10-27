@@ -60,6 +60,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/heart"
+                app:tint="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,6 +70,7 @@
                 android:layout_height="26dp"
                 android:layout_marginStart="16dp"
                 android:src="@drawable/chat"
+                app:tint="@color/black"
                 app:layout_constraintStart_toEndOf="@+id/like"
                 app:layout_constraintTop_toTopOf="@+id/like" />
 
@@ -78,6 +80,7 @@
                 android:layout_height="26dp"
                 android:layout_marginStart="16dp"
                 android:src="@drawable/send"
+                app:tint="@color/black"
                 app:layout_constraintStart_toEndOf="@+id/comment"
                 app:layout_constraintTop_toTopOf="@+id/comment" />
 
@@ -88,6 +91,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/bookmark"
+                app:tint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

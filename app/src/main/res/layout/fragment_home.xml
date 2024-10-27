@@ -18,6 +18,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Instagram"
+        app:titleTextColor="@color/black"
+        app:menu="@menu/option_menu"
         app:titleMarginStart="30dp" />
 
     <androidx.core.widget.NestedScrollView
@@ -113,6 +115,7 @@
                     android:id="@+id/post_rv"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    tools:listitem="@layout/post_item_home"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

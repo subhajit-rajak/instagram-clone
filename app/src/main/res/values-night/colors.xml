@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#000000</color>
+    <color name="black">#FAFAFA</color>
+    <color name="light_white">#171717</color>
+    <color name="grey">#808080</color>
+    <color name="bg_dark">#FFFFFF</color>
+    <color name="bg_light">#050505</color>
+    <color name="text_box_shape">#303030</color>
+    <color name="text_box_text">#FFFFFF</color>
+    <color name="text_box_hint_text">#848484</color>
+    <color name="button">#00A3FF</color>
+    <color name="greyButton">#303030</color>
+    <color name="hintColorNote">#4C4C4C</color>
+    <color name="tabLayoutColor">#000000</color>
+</resources>

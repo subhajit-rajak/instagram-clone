@@ -5,11 +5,11 @@
     <item
         android:id="@+id/like"
         android:icon="@drawable/heart"
-        android:title="like"
+        android:title="Notifications"
         app:showAsAction="always"/>
     <item
         android:id="@+id/message"
-        android:icon="@drawable/messenger"
-        android:title="like"
+        android:icon="@drawable/send"
+        android:title="Message"
         app:showAsAction="always"/>
 </menu>

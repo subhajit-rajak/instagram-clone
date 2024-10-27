@@ -34,12 +34,14 @@
             android:src="@drawable/lock"
             app:layout_constraintBottom_toBottomOf="@+id/profile_username"
             app:layout_constraintEnd_toStartOf="@+id/profile_username"
-            app:layout_constraintTop_toTopOf="@+id/profile_username" />
+            app:layout_constraintTop_toTopOf="@+id/profile_username"
+            app:tint="@color/black" />
 
         <ImageView
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginStart="4dp"
+            app:tint="@color/black"
             android:src="@drawable/switch_accounts"
             app:layout_constraintBottom_toBottomOf="@+id/profile_username"
             app:layout_constraintStart_toEndOf="@+id/profile_username"
@@ -50,6 +52,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="16dp"
+            app:tint="@color/black"
             android:src="@drawable/settings_profile"
             app:layout_constraintBottom_toBottomOf="@+id/profile_username"
             app:layout_constraintEnd_toEndOf="parent"
