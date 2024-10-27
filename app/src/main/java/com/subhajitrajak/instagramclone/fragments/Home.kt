@@ -1,5 +1,6 @@
 package com.subhajitrajak.instagramclone.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
@@ -18,14 +20,18 @@ import com.subhajitrajak.instagramclone.Models.Post
 import com.subhajitrajak.instagramclone.Models.User
 import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.adapters.PostAdapter
+import com.subhajitrajak.instagramclone.adapters.StoriesAdapter
 import com.subhajitrajak.instagramclone.databinding.FragmentHomeBinding
+import com.subhajitrajak.instagramclone.utils.FOLLOWINGS
 import com.subhajitrajak.instagramclone.utils.POST
 import com.subhajitrajak.instagramclone.utils.USER_NODE
 
 class Home : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapter: PostAdapter
+    private lateinit var storiesAdapter: StoriesAdapter
     private var postList = ArrayList<Post>()
+    private var followingList = ArrayList<User>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -39,26 +45,43 @@ class Home : Fragment() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         adapter= PostAdapter(requireContext(), postList)
         binding.postRv.layoutManager= LinearLayoutManager(requireContext())
         binding.postRv.adapter=adapter
+
+        storiesAdapter= StoriesAdapter(requireContext(), followingList)
+        binding.storiesRv.layoutManager= LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.storiesRv.adapter=storiesAdapter
+
         setHasOptionsMenu(true)
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.materialToolbar2)
 
         Firebase.firestore.collection(POST).get().addOnSuccessListener {
-            var tempList= arrayListOf<Post>()
+            val tempList= arrayListOf<Post>()
             postList.clear()
             for(i in it.documents){
-                var post: Post =i.toObject<Post>()!!
+                val post: Post =i.toObject<Post>()!!
                 tempList.add(post)
             }
             postList.addAll(tempList)
             adapter.notifyDataSetChanged()
+        }
+
+        Firebase.firestore.collection(Firebase.auth.currentUser!!.uid+ FOLLOWINGS).get().addOnSuccessListener {
+            val tempList = ArrayList<User>()
+            followingList.clear()
+            for (i in it.documents) {
+                val user: User = i.toObject<User>()!!
+                tempList.add(user)
+            }
+            followingList.addAll(tempList)
+            storiesAdapter.notifyDataSetChanged()
         }
 
         return binding.root
