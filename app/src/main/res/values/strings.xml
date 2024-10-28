@@ -38,9 +38,9 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="bio">Bio</string>
     <string name="name">Name</string>
-    <string name="posts">Posts</string>
-    <string name="followers">Followers</string>
-    <string name="following">Following</string>
+    <string name="posts">posts</string>
+    <string name="followers">followers</string>
+    <string name="following">following</string>
     <string name="_0">0</string>
     <string name="add_post">Add Post</string>
     <string name="add_reel">Add Reel</string>

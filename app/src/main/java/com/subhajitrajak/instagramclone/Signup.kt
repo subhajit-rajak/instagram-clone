@@ -39,7 +39,6 @@ class Signup : AppCompatActivity() {
             }
         }
     }
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -51,7 +50,7 @@ class Signup : AppCompatActivity() {
         }
 
         val text = "<font color=#6B6B6B>Already have an account? </font> <font color=#00A3FF>Log in.</font>"
-        binding.loginBtn.setText(Html.fromHtml(text))
+        binding.loginBtn.text = Html.fromHtml(text)
         user = User()
 
         if (intent.hasExtra("MODE")) {
@@ -81,14 +80,13 @@ class Signup : AppCompatActivity() {
                         }
                 }
             } else {
-                if (binding.usernameSignUp.text.toString().equals("") or
-                    binding.email.text.toString().equals("") or
-                    binding.passwordSignup.text.toString().equals("") or
-                    binding.confirmPassword.text.toString().equals("")
+                if ((binding.usernameSignUp.text.toString() == "") or
+                    (binding.email.text.toString() == "") or
+                    (binding.passwordSignup.text.toString() == "") or
+                    (binding.confirmPassword.text.toString() == "")
                 ) {
                     Toast.makeText(this@Signup, "Fill all required fields", Toast.LENGTH_SHORT).show()
-                } else if (!binding.passwordSignup.text.toString()
-                        .equals(binding.confirmPassword.text.toString())
+                } else if (binding.passwordSignup.text.toString() != binding.confirmPassword.text.toString()
                 ) {
                     Toast.makeText(this@Signup, "Passwords aren't matching", Toast.LENGTH_SHORT).show()
                 } else {

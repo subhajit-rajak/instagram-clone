@@ -37,7 +37,7 @@ class PostAdapter(var context: Context, private var postList: ArrayList<Post>): 
             Firebase.firestore.collection(USER_NODE).document(postList[position].uid).get().addOnSuccessListener {
                 val user=it.toObject<User>()
                 Glide.with(context).load(user!!.image).placeholder(R.drawable.profile).into(holder.binding.profileImage)
-                val userName = user.name
+                val userName = user.username
                 val caption = postList[position].caption
                 holder.binding.name.text=userName
                 holder.binding.postCaption.text= Html.fromHtml("<b>$userName</b> $caption")
