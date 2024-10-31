@@ -1,12 +1,18 @@
 package com.subhajitrajak.instagramclone.fragments
 
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
@@ -41,13 +47,75 @@ class Profile : Fragment() {
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-        viewPagerAdapter = ViewPagerAdapter(requireActivity().supportFragmentManager)
+        viewPagerAdapter = ViewPagerAdapter(requireActivity())
         viewPagerAdapter.addFragment(MyPosts(), "Posts")
         viewPagerAdapter.addFragment(MyReels(), "Reels")
         binding.viewPager.adapter=viewPagerAdapter
-        binding.tabLayout.setupWithViewPager(binding.viewPager)
+
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                binding.viewPager.currentItem = tab?.position ?: 0
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
+
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                binding.tabLayout.selectTab(binding.tabLayout.getTabAt(position))
+            }
+        })
+
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            val tabView = LayoutInflater.from(requireContext()).inflate(R.layout.tab_item_profile, null)
+            tab.customView = tabView
+            val icon = tabView.findViewById<ImageView>(R.id.tab_icon)
+
+            when (position) {
+                0 -> {
+                    icon.setImageResource(R.drawable.my_posts)
+                    icon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.black), PorterDuff.Mode.SRC_IN)
+                }
+                1 -> {
+                    icon.setImageResource(R.drawable.reels_filled)
+                    icon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.grey), PorterDuff.Mode.SRC_IN)
+                }
+            }
+            updateTabIcon(tab, false)
+        }.attach()
+
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                updateTabIcon(tab, true)
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                updateTabIcon(tab, false)
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+//                updateTabIcon(tab, true)
+            }
+        })
 
         return binding.root
+    }
+
+    private fun updateTabIcon(tab: TabLayout.Tab, isSelected: Boolean) {
+        val tabView = binding.tabLayout.getTabAt(tab.position)?.customView
+        val icon = tabView?.findViewById<ImageView>(R.id.tab_icon)
+
+        if (icon != null) {
+            val tintColor = if (isSelected) {
+                context?.let { ContextCompat.getColor(it, R.color.black) }
+            } else {
+                context?.let { ContextCompat.getColor(it, R.color.grey) }
+            }
+
+            icon.setColorFilter(tintColor!!, PorterDuff.Mode.SRC_IN)
+        }
     }
 
     override fun onStart() {

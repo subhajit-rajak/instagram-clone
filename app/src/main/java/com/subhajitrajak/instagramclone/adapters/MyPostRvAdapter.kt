@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import com.subhajitrajak.instagramclone.models.Post
 import com.subhajitrajak.instagramclone.databinding.MyPostRvDesignBinding
@@ -23,6 +24,6 @@ class MyPostRvAdapter(var context: Context, var postList: ArrayList<Post>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Picasso.get().load(postList.get(position).postUrl).into(holder.binding.postCanvas)
+        Glide.with(context).load(postList[position].postUrl).into(holder.binding.postCanvas)
     }
 }
