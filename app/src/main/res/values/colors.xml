@@ -13,4 +13,5 @@
     <color name="greyButton">#EFEFEF</color>
     <color name="hintColorNote">#4C4C4C</color>
     <color name="tabLayoutColor">#000000</color>
+    <color name="blue_link_color">#56C2FF</color>
 </resources>

@@ -68,6 +68,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_username" />
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/add_image"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/add"
+            app:civ_border_color="@color/bg_light"
+            app:civ_border_width="2sp"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+            app:layout_constraintEnd_toEndOf="@+id/profile_image"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/profile_image"
+            app:layout_constraintTop_toTopOf="@+id/profile_image"
+            app:layout_constraintVertical_bias="1.0" />
+
         <TextView
             android:id="@+id/profile_name"
             android:layout_width="wrap_content"
@@ -87,9 +101,25 @@
             android:layout_height="wrap_content"
             android:text="Digital goodies designer @pixellz\nEverything is designed"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/edit_profile"
+            app:layout_constraintBottom_toTopOf="@+id/profile_website"
             app:layout_constraintStart_toStartOf="@id/profile_name"
             app:layout_constraintTop_toBottomOf="@+id/profile_name" />
+
+        <TextView
+            android:id="@+id/profile_website"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:drawablePadding="4dp"
+            android:text="linkt.ree/mrvrtex"
+            android:textColor="@color/blue_link_color"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/link"
+            app:drawableTint="@color/blue_link_color"
+            app:layout_constraintBottom_toTopOf="@+id/edit_profile"
+            app:layout_constraintStart_toStartOf="@id/profile_name"
+            app:layout_constraintTop_toBottomOf="@+id/profile_bio" />
 
         <Button
             android:id="@+id/edit_profile"
@@ -98,18 +128,17 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="4dp"
-            android:layout_marginBottom="16dp"
             android:backgroundTint="@color/greyButton"
-            android:textStyle="bold"
             android:text="@string/edit_profile"
             android:textColor="@color/bg_dark"
+            android:textStyle="bold"
             app:cornerRadius="4dp"
-            app:rippleColor="@color/light_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/share_profile"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_bio" />
+            app:layout_constraintTop_toBottomOf="@+id/profile_bio"
+            app:rippleColor="@color/light_white" />
 
         <Button
             android:id="@+id/share_profile"

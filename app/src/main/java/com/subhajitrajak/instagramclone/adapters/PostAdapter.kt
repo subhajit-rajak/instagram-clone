@@ -44,7 +44,7 @@ class PostAdapter(var context: Context, private var postList: ArrayList<Post>): 
             }
         } catch (_: Exception) {}
 
-        Glide.with(context).load(postList[position].postUrl).placeholder(R.drawable.loading).into(holder.binding.postImage)
+        Glide.with(context).load(postList[position].postUrl).into(holder.binding.postImage)
         holder.binding.time.text= TimeAgo.using(postList[position].time)
 
         var isLiked = false

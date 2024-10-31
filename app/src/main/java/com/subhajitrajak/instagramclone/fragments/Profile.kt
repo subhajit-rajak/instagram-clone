@@ -1,6 +1,8 @@
 package com.subhajitrajak.instagramclone.fragments
 
+import android.content.Intent
 import android.graphics.PorterDuff
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,6 +40,18 @@ class Profile : Fragment() {
         }
         binding.settings.setOnClickListener {
             navController.navigate(R.id.action_profile_to_settings)
+        }
+
+        binding.profileWebsite.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            val url = binding.profileWebsite.text.toString().trim()
+            val validUrl = if (url.startsWith("http://") || url.startsWith("https://")) {
+                url
+            } else {
+                "https://$url"
+            }
+            intent.data = Uri.parse(validUrl)
+            startActivity(intent)
         }
     }
 
@@ -125,7 +139,17 @@ class Profile : Fragment() {
                 val user:User = it.toObject<User>()!!
                 binding.profileName.text=user.name
                 binding.profileUsername.text=user.username
-                binding.profileBio.text=user.bio
+                if(user.bio.isNullOrEmpty()) {
+                    binding.profileBio.visibility = View.GONE
+                } else {
+                    binding.profileBio.text = user.bio
+                }
+
+                if (user.website.isNullOrEmpty()) {
+                    binding.profileWebsite.visibility = View.GONE
+                } else {
+                    binding.profileWebsite.text = user.website
+                }
 
                 if(!user.image.isNullOrEmpty()) {
                     Picasso.get().load(user.image).into(binding.profileImage)

@@ -57,8 +57,7 @@
         <ImageView
             android:id="@+id/post_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@drawable/loading" />
+            android:layout_height="wrap_content" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -71,7 +70,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/heart"
-                app:tint="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
