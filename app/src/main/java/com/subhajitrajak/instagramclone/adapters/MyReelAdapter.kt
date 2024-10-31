@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.subhajitrajak.instagramclone.Models.Reel
+import com.subhajitrajak.instagramclone.models.Reel
 import com.subhajitrajak.instagramclone.databinding.MyReelRvDesignBinding
 
 class MyReelAdapter(var context: Context, var reelList: ArrayList<Reel>) :

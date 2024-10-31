@@ -10,10 +10,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
-import com.subhajitrajak.instagramclone.Models.Post
-import com.subhajitrajak.instagramclone.Models.Reel
-import com.subhajitrajak.instagramclone.R
-import com.subhajitrajak.instagramclone.adapters.MyPostRvAdapter
+import com.subhajitrajak.instagramclone.models.Reel
 import com.subhajitrajak.instagramclone.adapters.MyReelAdapter
 import com.subhajitrajak.instagramclone.databinding.FragmentMyReelsBinding
 import com.subhajitrajak.instagramclone.utils.REEL

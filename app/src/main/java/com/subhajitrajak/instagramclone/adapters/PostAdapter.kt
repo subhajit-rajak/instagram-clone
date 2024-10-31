@@ -12,8 +12,8 @@ import com.github.marlonlom.utilities.timeago.TimeAgo
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
-import com.subhajitrajak.instagramclone.Models.Post
-import com.subhajitrajak.instagramclone.Models.User
+import com.subhajitrajak.instagramclone.models.Post
+import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.databinding.PostItemHomeBinding
 import com.subhajitrajak.instagramclone.utils.USER_NODE

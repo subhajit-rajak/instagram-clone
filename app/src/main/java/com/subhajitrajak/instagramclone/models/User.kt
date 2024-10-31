@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.Models
+package com.subhajitrajak.instagramclone.models
 
 class User {
     var image:String?=null

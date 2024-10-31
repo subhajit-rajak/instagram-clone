@@ -10,7 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.subhajitrajak.instagramclone.Models.User
+import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.databinding.ActivityLoginBinding
 
 class Login : AppCompatActivity() {

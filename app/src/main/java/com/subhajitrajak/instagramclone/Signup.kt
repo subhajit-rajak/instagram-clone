@@ -1,6 +1,5 @@
 package com.subhajitrajak.instagramclone
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
@@ -16,7 +15,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
-import com.subhajitrajak.instagramclone.Models.User
+import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.utils.USER_NODE
 import com.subhajitrajak.instagramclone.utils.USER_PROFILE_FOLDER
 import com.subhajitrajak.instagramclone.utils.uploadImage

@@ -9,17 +9,13 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 import com.subhajitrajak.instagramclone.Home
-import com.subhajitrajak.instagramclone.Models.Post
-import com.subhajitrajak.instagramclone.Models.User
+import com.subhajitrajak.instagramclone.models.Post
+import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.utils.POST
 import com.subhajitrajak.instagramclone.utils.POST_FOLDER
 import com.subhajitrajak.instagramclone.utils.uploadImage
 import com.subhajitrajak.instagramclone.databinding.ActivityPostsBinding
 import com.subhajitrajak.instagramclone.utils.USER_NODE
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 class Posts : AppCompatActivity() {
     private val binding by lazy {

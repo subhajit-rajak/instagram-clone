@@ -8,15 +8,16 @@ import android.view.ViewGroup
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
-import com.subhajitrajak.instagramclone.Models.Reel
+import com.subhajitrajak.instagramclone.models.Reel
 import com.subhajitrajak.instagramclone.adapters.ReelAdapter
 import com.subhajitrajak.instagramclone.databinding.FragmentReelBinding
+import com.subhajitrajak.instagramclone.databinding.ReelDgBinding
 import com.subhajitrajak.instagramclone.utils.REEL
 
 class Reel : Fragment() {
     private lateinit var binding:FragmentReelBinding
     lateinit var adapter: ReelAdapter
-    var reelList = ArrayList<Reel>()
+    private var reelList = ArrayList<Reel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,16 +26,16 @@ class Reel : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentReelBinding.inflate(inflater, container, false)
 
         adapter = ReelAdapter(requireContext(), reelList)
         binding.viewPager.adapter = adapter
         Firebase.firestore.collection(REEL).get().addOnSuccessListener {
-            var tempList = arrayListOf<Reel>()
+            val tempList = arrayListOf<Reel>()
             reelList.clear()
             for (i in it.documents) {
-                var reel = i.toObject<Reel>()!!
+                val reel = i.toObject<Reel>()!!
                 tempList.add(reel)
             }
             reelList.addAll(tempList)
@@ -45,7 +46,13 @@ class Reel : Fragment() {
         return binding.root
     }
 
-    companion object {
+    override fun onPause() {
+        super.onPause()
+        adapter.releasePlayer()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        binding.viewPager.adapter = adapter
     }
 }

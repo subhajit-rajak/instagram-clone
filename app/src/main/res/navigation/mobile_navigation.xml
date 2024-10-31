@@ -32,10 +32,18 @@
         <action
             android:id="@+id/action_profile_to_editProfile"
             app:destination="@id/editProfile" />
+        <action
+            android:id="@+id/action_profile_to_settings"
+            app:destination="@id/settings" />
     </fragment>
     <fragment
         android:id="@+id/editProfile"
         android:name="com.subhajitrajak.instagramclone.fragments.EditProfile"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.subhajitrajak.instagramclone.fragments.Settings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

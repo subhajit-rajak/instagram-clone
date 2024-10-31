@@ -3,18 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/black"
+    android:background="#000000"
     android:layout_height="match_parent">
 
-    <VideoView
-        android:id="@+id/videoView"
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/player_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:show_buffering="when_playing"
+        app:use_controller="false" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -31,20 +32,20 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/inter"
         android:maxLines="2"
         android:text="@string/sampleText"
-        android:textColor="@color/white"
+        android:textColor="#FFFFFF"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="8dp"
         android:src="@drawable/profile"
         app:layout_constraintBottom_toTopOf="@+id/caption_reel"
         app:layout_constraintStart_toStartOf="@+id/caption_reel" />
@@ -53,21 +54,40 @@
         android:id="@+id/username_reel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="12dp"
         android:fontFamily="@font/inter_bold"
         android:text="@string/sampleUsername"
-        android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/profile_image"
         app:layout_constraintStart_toEndOf="@+id/profile_image"
         app:layout_constraintTop_toTopOf="@+id/profile_image" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+    <Button
+        android:id="@+id/edit_profile"
+        style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/videoView"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:text="Follow"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:cornerRadius="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/username_reel"
+        app:layout_constraintStart_toEndOf="@+id/username_reel"
+        app:layout_constraintTop_toTopOf="@+id/username_reel"
+        app:rippleColor="@color/light_white"
+        app:strokeColor="#FFFFFF"
+        app:strokeWidth="1dp" />
+
+    <ImageView
+        android:id="@+id/muteButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/volume_up"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

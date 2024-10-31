@@ -5,13 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.subhajitrajak.instagramclone.Models.User
+import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.databinding.StoriesRvDesignBinding
-import com.subhajitrajak.instagramclone.utils.FOLLOWINGS
 
 class StoriesAdapter(
     var context: Context,

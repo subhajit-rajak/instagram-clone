@@ -10,8 +10,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 import com.subhajitrajak.instagramclone.Home
-import com.subhajitrajak.instagramclone.Models.Reel
-import com.subhajitrajak.instagramclone.Models.User
+import com.subhajitrajak.instagramclone.models.Reel
+import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.databinding.ActivityReelsBinding
 import com.subhajitrajak.instagramclone.utils.REEL
 import com.subhajitrajak.instagramclone.utils.REEL_FOLDER
@@ -23,7 +23,7 @@ class Reels : AppCompatActivity() {
         ActivityReelsBinding.inflate(layoutInflater)
     }
     private lateinit var videoUrl: String
-    lateinit var progressDialog : ProgressDialog
+    private lateinit var progressDialog : ProgressDialog
     private val launcher = registerForActivityResult(ActivityResultContracts.GetContent()) {
             uri->
         uri?.let {
@@ -45,9 +45,13 @@ class Reels : AppCompatActivity() {
         }
 
         binding.shareBtn.setOnClickListener {
-            Firebase.firestore.collection(USER_NODE).document(Firebase.auth.currentUser!!.uid).get().addOnSuccessListener {
-                var user :User = it.toObject<User>()!!
-                val reel:Reel = Reel(videoUrl!!, binding.caption.text.toString(), user.image!!, user.name!!)
+            val userId = Firebase.auth.currentUser!!.uid
+            Firebase.firestore.collection(USER_NODE).document(userId).get().addOnSuccessListener {
+                val user :User = it.toObject<User>()!!
+                val reel = Reel(
+                    reelUrl = videoUrl,
+                    caption = binding.caption.text.toString(),
+                    userId = userId)
                 Firebase.firestore.collection(REEL).document().set(reel).addOnSuccessListener {
                     Firebase.firestore.collection(Firebase.auth.currentUser!!.uid+ REEL).document().set(reel).addOnSuccessListener {
                         startActivity(Intent(this@Reels, Home::class.java))

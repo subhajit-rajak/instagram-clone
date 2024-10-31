@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import com.subhajitrajak.instagramclone.Models.Post
+import com.subhajitrajak.instagramclone.models.Post
 import com.subhajitrajak.instagramclone.databinding.MyPostRvDesignBinding
 
 class MyPostRvAdapter(var context: Context, var postList: ArrayList<Post>) :

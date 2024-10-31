@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.Models
+package com.subhajitrajak.instagramclone.models
 
 class Post {
     var postUrl: String= ""

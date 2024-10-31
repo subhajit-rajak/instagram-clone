@@ -1,6 +1,5 @@
 package com.subhajitrajak.instagramclone.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +13,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
-import com.subhajitrajak.instagramclone.Home
-import com.subhajitrajak.instagramclone.Models.User
+import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.databinding.FragmentEditProfileBinding
 import com.subhajitrajak.instagramclone.utils.USER_NODE
