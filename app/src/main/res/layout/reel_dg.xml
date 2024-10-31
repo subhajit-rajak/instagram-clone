@@ -10,6 +10,13 @@
         android:id="@+id/seekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="-16dp"
+        android:layout_marginEnd="-16dp"
+        android:progress="30"
+        android:progressBackgroundTint="#AEAEAE"
+        android:progressTint="#FFFFFF"
+        android:thumb="@android:color/transparent"
+        android:thumbTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
