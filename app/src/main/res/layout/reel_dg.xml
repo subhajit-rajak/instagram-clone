@@ -83,13 +83,90 @@
 
     <ImageView
         android:id="@+id/muteButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:src="@drawable/volume_up"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/more_settings"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/more_settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/shares"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="40.5K"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@id/more_settings"
+        app:layout_constraintEnd_toEndOf="@+id/more_settings"
+        app:layout_constraintStart_toStartOf="@+id/more_settings" />
+
+    <ImageView
+        android:id="@+id/share_image"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/send"
+        app:layout_constraintBottom_toTopOf="@id/shares"
+        app:layout_constraintEnd_toEndOf="@+id/more_settings"
+        app:layout_constraintStart_toStartOf="@+id/more_settings"
+        app:tint="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/comments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="1,089"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@id/share_image"
+        app:layout_constraintEnd_toEndOf="@+id/more_settings"
+        app:layout_constraintStart_toStartOf="@+id/more_settings" />
+
+    <ImageView
+        android:id="@+id/comment_image"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/chat"
+        app:layout_constraintBottom_toTopOf="@id/comments"
+        app:layout_constraintEnd_toEndOf="@+id/more_settings"
+        app:layout_constraintStart_toStartOf="@+id/more_settings"
+        app:tint="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="387K"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@id/comment_image"
+        app:layout_constraintEnd_toEndOf="@+id/more_settings"
+        app:layout_constraintStart_toStartOf="@+id/more_settings" />
+
+    <ImageView
+        android:id="@+id/like_image"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/heart"
+        app:layout_constraintBottom_toTopOf="@id/likes"
+        app:layout_constraintEnd_toEndOf="@+id/more_settings"
+        app:layout_constraintStart_toStartOf="@+id/more_settings"
+        app:tint="#FFFFFF" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
