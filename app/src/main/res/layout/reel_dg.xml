@@ -3,170 +3,188 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#000000"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#000000">
 
-    <androidx.media3.ui.PlayerView
-        android:id="@+id/player_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:show_buffering="when_playing"
-        app:use_controller="false" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="-55dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/black_gradient" />
-
-    <TextView
-        android:id="@+id/caption_reel"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/inter"
-        android:maxLines="2"
-        android:text="@string/sampleText"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginBottom="8dp"
-        android:src="@drawable/profile"
-        app:layout_constraintBottom_toTopOf="@+id/caption_reel"
-        app:layout_constraintStart_toStartOf="@+id/caption_reel" />
-
-    <TextView
-        android:id="@+id/username_reel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:fontFamily="@font/inter_bold"
-        android:text="@string/sampleUsername"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-        app:layout_constraintStart_toEndOf="@+id/profile_image"
-        app:layout_constraintTop_toTopOf="@+id/profile_image" />
-
-    <Button
-        android:id="@+id/edit_profile"
-        style="@style/Widget.Material3.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="12dp"
-        android:text="Follow"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:cornerRadius="6dp"
-        app:layout_constraintBottom_toBottomOf="@+id/username_reel"
-        app:layout_constraintStart_toEndOf="@+id/username_reel"
-        app:layout_constraintTop_toTopOf="@+id/username_reel"
-        app:rippleColor="@color/light_white"
-        app:strokeColor="#FFFFFF"
-        app:strokeWidth="1dp" />
-
-    <ImageView
-        android:id="@+id/muteButton"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:src="@drawable/volume_up"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/more_settings"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:src="@drawable/more_settings"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="#FFFFFF" />
+        <androidx.media3.ui.PlayerView
+            android:id="@+id/player_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:show_buffering="when_playing"
+            app:use_controller="false" />
 
-    <TextView
-        android:id="@+id/shares"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="40.5K"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@id/more_settings"
-        app:layout_constraintEnd_toEndOf="@+id/more_settings"
-        app:layout_constraintStart_toStartOf="@+id/more_settings" />
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-55dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/black_gradient" />
 
-    <ImageView
-        android:id="@+id/share_image"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginBottom="8dp"
-        android:src="@drawable/send"
-        app:layout_constraintBottom_toTopOf="@id/shares"
-        app:layout_constraintEnd_toEndOf="@+id/more_settings"
-        app:layout_constraintStart_toStartOf="@+id/more_settings"
-        app:tint="#FFFFFF" />
+        <TextView
+            android:id="@+id/caption_reel"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/inter"
+            android:maxLines="2"
+            android:text="@string/sampleText"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/comments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="1,089"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@id/share_image"
-        app:layout_constraintEnd_toEndOf="@+id/more_settings"
-        app:layout_constraintStart_toStartOf="@+id/more_settings" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/profile"
+            app:layout_constraintBottom_toTopOf="@+id/caption_reel"
+            app:layout_constraintStart_toStartOf="@+id/caption_reel" />
 
-    <ImageView
-        android:id="@+id/comment_image"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginBottom="8dp"
-        android:src="@drawable/chat"
-        app:layout_constraintBottom_toTopOf="@id/comments"
-        app:layout_constraintEnd_toEndOf="@+id/more_settings"
-        app:layout_constraintStart_toStartOf="@+id/more_settings"
-        app:tint="#FFFFFF" />
+        <TextView
+            android:id="@+id/username_reel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/sampleUsername"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            app:layout_constraintTop_toTopOf="@+id/profile_image" />
 
-    <TextView
-        android:id="@+id/likes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="387K"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@id/comment_image"
-        app:layout_constraintEnd_toEndOf="@+id/more_settings"
-        app:layout_constraintStart_toStartOf="@+id/more_settings" />
+        <Button
+            android:id="@+id/edit_profile"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="12dp"
+            android:text="Follow"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:cornerRadius="6dp"
+            app:layout_constraintBottom_toBottomOf="@+id/username_reel"
+            app:layout_constraintStart_toEndOf="@+id/username_reel"
+            app:layout_constraintTop_toTopOf="@+id/username_reel"
+            app:rippleColor="@color/light_white"
+            app:strokeColor="#FFFFFF"
+            app:strokeWidth="1dp" />
 
-    <ImageView
-        android:id="@+id/like_image"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginBottom="8dp"
-        android:src="@drawable/heart"
-        app:layout_constraintBottom_toTopOf="@id/likes"
-        app:layout_constraintEnd_toEndOf="@+id/more_settings"
-        app:layout_constraintStart_toStartOf="@+id/more_settings"
-        app:tint="#FFFFFF" />
+        <ImageView
+            android:id="@+id/muteButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/volume_up"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/more_settings"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:src="@drawable/more_settings"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/shares"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="40.5K"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@id/more_settings"
+            app:layout_constraintEnd_toEndOf="@+id/more_settings"
+            app:layout_constraintStart_toStartOf="@+id/more_settings" />
+
+        <ImageView
+            android:id="@+id/share_image"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/send"
+            app:layout_constraintBottom_toTopOf="@id/shares"
+            app:layout_constraintEnd_toEndOf="@+id/more_settings"
+            app:layout_constraintStart_toStartOf="@+id/more_settings"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="1,089"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@id/share_image"
+            app:layout_constraintEnd_toEndOf="@+id/more_settings"
+            app:layout_constraintStart_toStartOf="@+id/more_settings" />
+
+        <ImageView
+            android:id="@+id/comment_image"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/chat"
+            app:layout_constraintBottom_toTopOf="@id/comments"
+            app:layout_constraintEnd_toEndOf="@+id/more_settings"
+            app:layout_constraintStart_toStartOf="@+id/more_settings"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="387K"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@id/comment_image"
+            app:layout_constraintEnd_toEndOf="@+id/more_settings"
+            app:layout_constraintStart_toStartOf="@+id/more_settings" />
+
+        <ImageView
+            android:id="@+id/like_image"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/heart"
+            app:layout_constraintBottom_toTopOf="@id/likes"
+            app:layout_constraintEnd_toEndOf="@+id/more_settings"
+            app:layout_constraintStart_toStartOf="@+id/more_settings"
+            app:tint="#FFFFFF" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

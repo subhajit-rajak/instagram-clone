@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
@@ -22,6 +23,7 @@ import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.databinding.ReelDgBinding
 import com.subhajitrajak.instagramclone.utils.USER_NODE
 import androidx.media3.common.MediaItem
+import androidx.media3.common.Player
 
 
 class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
@@ -61,6 +63,7 @@ class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
         val reel = reelList[position]
         holder.binding.captionReel.text = reel.caption
 
+        releasePlayer()
         exoPlayer = ExoPlayer.Builder(context).build().apply {
             setMediaItem(MediaItem.fromUri(Uri.parse(reel.reelUrl)))
             repeatMode = ExoPlayer.REPEAT_MODE_ALL
@@ -101,6 +104,33 @@ class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
             }
             false
         }
+
+        exoPlayer?.addListener(object : Player.Listener {
+            override fun onPlaybackStateChanged(playbackState: Int) {
+                if (playbackState == Player.STATE_READY) {
+                    holder.binding.seekBar.max = exoPlayer?.duration?.toInt() ?: 0
+                }
+            }
+        })
+
+        val updateSeekBar = object : Runnable {
+            override fun run() {
+                holder.binding.seekBar.progress = exoPlayer?.currentPosition?.toInt() ?: 0
+                holder.binding.seekBar.postDelayed(this, 0)
+            }
+        }
+        holder.binding.seekBar.post(updateSeekBar)
+
+        holder.binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if(fromUser) {
+                    exoPlayer?.seekTo(progress.toLong())
+                }
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+
+        })
     }
 
     private fun showMuteButtonTemporarily(holder: ViewHolder) {
@@ -111,9 +141,9 @@ class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
 
     override fun onViewRecycled(holder: ViewHolder) {
         super.onViewRecycled(holder)
-        exoPlayer?.release()
-        exoPlayer = null
+        releasePlayer()
         holder.hideHandler.removeCallbacks(holder.hideRunnable)
+        holder.binding.seekBar.removeCallbacks(null)
     }
 
     fun releasePlayer() {
