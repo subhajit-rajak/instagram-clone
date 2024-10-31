@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
@@ -36,6 +37,7 @@ class Home : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -43,14 +45,7 @@ class Home : Fragment() {
             val user=it.toObject<User>()
             Glide.with(requireContext()).load(user!!.image).placeholder(R.drawable.profile).into(binding.profilePic)
         }
-    }
 
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
         adapter= PostAdapter(requireContext(), postList)
         binding.postRv.layoutManager= LinearLayoutManager(requireContext())
         binding.postRv.adapter=adapter
@@ -62,16 +57,19 @@ class Home : Fragment() {
         setHasOptionsMenu(true)
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.materialToolbar2)
 
-        Firebase.firestore.collection(POST).get().addOnSuccessListener {
-            val tempList= arrayListOf<Post>()
-            postList.clear()
-            for(i in it.documents){
-                val post: Post =i.toObject<Post>()!!
-                tempList.add(post)
+        Firebase.firestore.collection(POST)
+            .orderBy("time", Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener {
+                val tempList= arrayListOf<Post>()
+                postList.clear()
+                for(i in it.documents){
+                    val post: Post =i.toObject<Post>()!!
+                    tempList.add(post)
+                }
+                postList.addAll(tempList)
+                adapter.notifyDataSetChanged()
             }
-            postList.addAll(tempList)
-            adapter.notifyDataSetChanged()
-        }
 
         Firebase.firestore.collection(Firebase.auth.currentUser!!.uid+ FOLLOWINGS).get().addOnSuccessListener {
             val tempList = ArrayList<User>()
@@ -84,9 +82,17 @@ class Home : Fragment() {
             storiesAdapter.notifyDataSetChanged()
         }
 
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.option_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
