@@ -80,7 +80,7 @@ class PostAdapter(var context: Context, private var postList: ArrayList<Post>): 
                 holder.binding.like.setImageResource(if (isLiked) R.drawable.heart_filled else R.drawable.heart)
             } else {
                 isLiked = false
-                holder.binding.likeCount.text = "0"
+                holder.binding.likeCount.text = R.string._0.toString()
                 holder.binding.like.setImageResource(R.drawable.heart)
             }
         }

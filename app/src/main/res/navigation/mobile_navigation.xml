@@ -46,4 +46,18 @@
         android:name="com.subhajitrajak.instagramclone.fragments.Settings"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/viewPost"
+        android:name="com.subhajitrajak.instagramclone.fragments.ViewPost"
+        android:label="fragment_view_post"
+        tools:layout="@layout/fragment_view_post" />
+    <fragment
+        android:id="@+id/myPosts"
+        android:name="com.subhajitrajak.instagramclone.fragments.MyPosts"
+        android:label="fragment_my_posts"
+        tools:layout="@layout/fragment_my_posts" >
+        <action
+            android:id="@+id/action_myPosts_to_viewPost"
+            app:destination="@id/viewPost" />
+    </fragment>
 </navigation>
