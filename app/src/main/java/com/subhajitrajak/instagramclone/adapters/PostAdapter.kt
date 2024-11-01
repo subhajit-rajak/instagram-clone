@@ -4,11 +4,15 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.github.marlonlom.utilities.timeago.TimeAgo
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
@@ -47,21 +51,51 @@ class PostAdapter(var context: Context, private var postList: ArrayList<Post>): 
         Glide.with(context).load(postList[position].postUrl).into(holder.binding.postImage)
         holder.binding.time.text= TimeAgo.using(postList[position].time)
 
-        var isLiked = false
-        holder.binding.like.setOnClickListener {
-            if(isLiked) {
-                holder.binding.like.setImageResource(R.drawable.heart)
-            } else {
-                holder.binding.like.setImageResource(R.drawable.heart_filled)
-            }
-            isLiked = !isLiked
-        }
-
         holder.binding.share.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/plain"
             intent.putExtra(Intent.EXTRA_TEXT, postList[position].postUrl)
             context.startActivity(Intent.createChooser(intent, "Share"))
+        }
+
+        val postRef = Firebase.firestore.collection("Post").document(postList[position].postId)
+        val userId = Firebase.auth.currentUser!!.uid
+        handlePostLikes(holder, postRef, userId)
+    }
+
+    private fun handlePostLikes(
+        holder: MyHolder,
+        postRef: DocumentReference,
+        userId: String
+    ) {
+        var isLiked = false
+
+        postRef.get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()) {
+                // Retrieve the current likes map
+                val likesMap = documentSnapshot.get("likes") as? Map<String, Boolean> ?: emptyMap()
+                isLiked = likesMap.containsKey(userId)
+                holder.binding.likeCount.text = likesMap.count { it.value }.toString()
+
+                holder.binding.like.setImageResource(if (isLiked) R.drawable.heart_filled else R.drawable.heart)
+            } else {
+                isLiked = false
+                holder.binding.likeCount.text = "0"
+                holder.binding.like.setImageResource(R.drawable.heart)
+            }
+        }
+
+        holder.binding.like.setOnClickListener {
+            if (isLiked) {
+                holder.binding.like.setImageResource(R.drawable.heart)
+                holder.binding.likeCount.text = holder.binding.likeCount.text.toString().toInt().minus(1).toString()
+                postRef.update("likes.$userId", FieldValue.delete())
+            } else {
+                holder.binding.like.setImageResource(R.drawable.heart_filled)
+                holder.binding.likeCount.text = holder.binding.likeCount.text.toString().toInt().plus(1).toString()
+                postRef.update("likes.$userId", true)
+            }
+            isLiked = !isLiked
         }
     }
 }

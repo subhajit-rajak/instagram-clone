@@ -65,33 +65,75 @@
 
             <ImageView
                 android:id="@+id/like"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/heart"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/like_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="23"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/like"
+                app:layout_constraintStart_toEndOf="@+id/like"
+                app:layout_constraintTop_toTopOf="@+id/like"
+                app:layout_constraintVertical_bias="0.35" />
+
             <ImageView
                 android:id="@+id/comment"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
                 android:src="@drawable/chat"
-                app:tint="@color/black"
-                app:layout_constraintStart_toEndOf="@+id/like"
-                app:layout_constraintTop_toTopOf="@+id/like" />
+                app:layout_constraintStart_toEndOf="@+id/like_count"
+                app:layout_constraintTop_toTopOf="@+id/like"
+                app:tint="@color/black" />
+
+            <TextView
+                android:id="@+id/comment_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/_0"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/like"
+                app:layout_constraintStart_toEndOf="@+id/comment"
+                app:layout_constraintTop_toTopOf="@+id/like"
+                app:layout_constraintVertical_bias="0.35" />
 
             <ImageView
                 android:id="@+id/share"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
                 android:src="@drawable/send"
-                app:tint="@color/black"
-                app:layout_constraintStart_toEndOf="@+id/comment"
-                app:layout_constraintTop_toTopOf="@+id/comment" />
+                app:layout_constraintStart_toEndOf="@+id/comment_count"
+                app:layout_constraintTop_toTopOf="@+id/comment"
+                app:tint="@color/black" />
+
+            <TextView
+                android:id="@+id/share_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/_0"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/like"
+                app:layout_constraintStart_toEndOf="@+id/share"
+                app:layout_constraintTop_toTopOf="@+id/like"
+                app:layout_constraintVertical_bias="0.35" />
 
             <ImageView
                 android:id="@+id/save"
