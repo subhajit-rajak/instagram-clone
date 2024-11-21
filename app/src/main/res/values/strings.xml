@@ -42,8 +42,8 @@
     <string name="followers">followers</string>
     <string name="following">following</string>
     <string name="_0">0</string>
-    <string name="add_post">Add Post</string>
-    <string name="add_reel">Add Reel</string>
+    <string name="add_post">New Post</string>
+    <string name="add_reel">New Reel</string>
     <string name="share">Share</string>
     <string name="write_a_caption">Write a caption...</string>
     <string name="tap_to_upload_your_reel">Tap to upload your reel</string>

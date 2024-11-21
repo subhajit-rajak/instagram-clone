@@ -35,6 +35,8 @@ class Profile : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
+        updateView()
+
         binding.editProfile.setOnClickListener {
             navController.navigate(R.id.action_profile_to_editProfile)
         }
@@ -117,23 +119,7 @@ class Profile : Fragment() {
         return binding.root
     }
 
-    private fun updateTabIcon(tab: TabLayout.Tab, isSelected: Boolean) {
-        val tabView = binding.tabLayout.getTabAt(tab.position)?.customView
-        val icon = tabView?.findViewById<ImageView>(R.id.tab_icon)
-
-        if (icon != null) {
-            val tintColor = if (isSelected) {
-                context?.let { ContextCompat.getColor(it, R.color.black) }
-            } else {
-                context?.let { ContextCompat.getColor(it, R.color.grey) }
-            }
-
-            icon.setColorFilter(tintColor!!, PorterDuff.Mode.SRC_IN)
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
+    private fun updateView() {
         Firebase.firestore.collection(USER_NODE).document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener {
                 val user:User = it.toObject<User>()!!
@@ -155,5 +141,20 @@ class Profile : Fragment() {
                     Picasso.get().load(user.image).into(binding.profileImage)
                 }
             }
+    }
+
+    private fun updateTabIcon(tab: TabLayout.Tab, isSelected: Boolean) {
+        val tabView = binding.tabLayout.getTabAt(tab.position)?.customView
+        val icon = tabView?.findViewById<ImageView>(R.id.tab_icon)
+
+        if (icon != null) {
+            val tintColor = if (isSelected) {
+                context?.let { ContextCompat.getColor(it, R.color.black) }
+            } else {
+                context?.let { ContextCompat.getColor(it, R.color.grey) }
+            }
+
+            icon.setColorFilter(tintColor!!, PorterDuff.Mode.SRC_IN)
+        }
     }
 }
