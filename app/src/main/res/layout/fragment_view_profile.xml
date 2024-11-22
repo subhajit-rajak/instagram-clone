@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.ViewProfile">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/back_arrow"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_username"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/profile_username"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/profile_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:text="jacob_w"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/back_btn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/settings"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            app:tint="@color/black"
+            android:src="@drawable/more_settings"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/profile_username" />
+
+        <ImageView
+            android:id="@+id/messageBtnn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            app:tint="@color/black"
+            android:src="@drawable/send"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_username"
+            app:layout_constraintEnd_toStartOf="@id/settings"
+            app:layout_constraintTop_toTopOf="@+id/profile_username" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_username" />
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Jacob West"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/profile_bio"
+            app:layout_constraintStart_toStartOf="@id/profile_image"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/profile_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Digital goodies designer @pixellz\nEverything is designed"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/profile_website"
+            app:layout_constraintStart_toStartOf="@id/profile_name"
+            app:layout_constraintTop_toBottomOf="@+id/profile_name" />
+
+        <TextView
+            android:id="@+id/profile_website"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:drawablePadding="4dp"
+            android:text="linkt.ree/mrvrtex"
+            android:textColor="@color/blue_link_color"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/link"
+            app:drawableTint="@color/blue_link_color"
+            app:layout_constraintBottom_toTopOf="@+id/followBtn"
+            app:layout_constraintStart_toStartOf="@id/profile_name"
+            app:layout_constraintTop_toBottomOf="@+id/profile_bio" />
+
+        <Button
+            android:id="@+id/followBtn"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="@color/button"
+            android:text="Follow"
+            android:textColor="@color/bg_dark"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/messageBtn"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_website"
+            app:rippleColor="@color/light_white" />
+
+        <Button
+            android:id="@+id/messageBtn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="@color/greyButton"
+            android:text="Message"
+            android:textColor="@color/bg_dark"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
+            app:rippleColor="@color/light_white"
+            app:layout_constraintBottom_toBottomOf="@+id/followBtn"
+            app:layout_constraintEnd_toStartOf="@id/more_profiles"
+            app:layout_constraintStart_toEndOf="@+id/followBtn"
+            app:layout_constraintTop_toTopOf="@+id/followBtn" />
+
+        <ImageButton
+            android:id="@+id/more_profiles"
+            android:layout_width="41dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/grey_button_shape"
+            android:scaleType="fitXY"
+            android:padding="10dp"
+            android:src="@drawable/more_profiles"
+            app:rippleColor="@color/light_white"
+            app:layout_constraintBottom_toBottomOf="@+id/messageBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/messageBtn"
+            app:layout_constraintTop_toTopOf="@+id/messageBtn"
+            app:tint="@color/bg_dark" />
+
+        <TextView
+            android:id="@+id/textPosts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:text="@string/posts"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/textFollowers"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            app:layout_constraintTop_toBottomOf="@+id/posts" />
+
+        <TextView
+            android:id="@+id/textFollowers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="@string/followers"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/textFollowing"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textPosts"
+            app:layout_constraintTop_toTopOf="@+id/textPosts" />
+
+        <TextView
+            android:id="@+id/textFollowing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/following"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textFollowers"
+            app:layout_constraintTop_toTopOf="@id/textFollowers" />
+
+        <TextView
+            android:id="@+id/posts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="54"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+            app:layout_constraintEnd_toEndOf="@+id/textPosts"
+            app:layout_constraintStart_toStartOf="@+id/textPosts"
+            app:layout_constraintTop_toTopOf="@+id/profile_image"
+            app:layout_constraintVertical_bias="0.35" />
+
+        <TextView
+            android:id="@+id/followers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="834"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textFollowers"
+            app:layout_constraintStart_toStartOf="@+id/textFollowers"
+            app:layout_constraintTop_toTopOf="@+id/posts" />
+
+        <TextView
+            android:id="@+id/following"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="162"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textFollowing"
+            app:layout_constraintStart_toStartOf="@+id/textFollowing"
+            app:layout_constraintTop_toTopOf="@+id/followers" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

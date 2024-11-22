@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_shape"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="@drawable/bottom_sheet_shape"
     tools:context=".fragments.Add">
 
     <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        style="@style/Widget.Material3.BottomSheet.DragHandle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Widget.Material3.BottomSheet.DragHandle"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,8 +27,7 @@
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_margin="16dp"
-        />
+        android:layout_margin="16dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/post"
@@ -36,7 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:backgroundTint="@color/greyButton"
-        app:cardCornerRadius="16dp">
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,7 +71,8 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="@color/greyButton"
-        app:cardCornerRadius="16dp">
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"

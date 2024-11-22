@@ -8,12 +8,23 @@
         android:id="@+id/home"
         android:name="com.subhajitrajak.instagramclone.fragments.Home"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_viewProfile"
+            app:destination="@id/viewProfile" />
+        <action
+            android:id="@+id/action_home_to_profile"
+            app:destination="@id/profile" />
+    </fragment>
     <fragment
         android:id="@+id/search"
         android:name="com.subhajitrajak.instagramclone.fragments.Search"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_search_to_viewProfile"
+            app:destination="@id/viewProfile" />
+    </fragment>
     <dialog
         android:id="@+id/add"
         android:name="com.subhajitrajak.instagramclone.fragments.Add"
@@ -23,7 +34,14 @@
         android:id="@+id/reel"
         android:name="com.subhajitrajak.instagramclone.fragments.Reel"
         android:label="fragment_reel"
-        tools:layout="@layout/fragment_reel" />
+        tools:layout="@layout/fragment_reel" >
+        <action
+            android:id="@+id/action_reel_to_viewProfile"
+            app:destination="@id/viewProfile" />
+        <action
+            android:id="@+id/action_reel_to_profile"
+            app:destination="@id/profile" />
+    </fragment>
     <fragment
         android:id="@+id/profile"
         android:name="com.subhajitrajak.instagramclone.fragments.Profile"
@@ -60,4 +78,9 @@
             android:id="@+id/action_myPosts_to_viewPost"
             app:destination="@id/viewPost" />
     </fragment>
+    <fragment
+        android:id="@+id/viewProfile"
+        android:name="com.subhajitrajak.instagramclone.fragments.ViewProfile"
+        android:label="fragment_view_profile"
+        tools:layout="@layout/fragment_view_profile" />
 </navigation>

@@ -1,8 +1,11 @@
 package com.subhajitrajak.instagramclone.adapters
 
 import android.content.Context
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
@@ -15,7 +18,7 @@ import com.subhajitrajak.instagramclone.utils.FOLLOWINGS
 
 class SearchAdapter(
     var context: Context,
-    var userList: ArrayList<User>
+    private var userList: ArrayList<User>
 ): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
     inner class ViewHolder(var binding: SearchRvDesignBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -36,6 +39,7 @@ class SearchAdapter(
                 isFollowed = false
             } else {
                 holder.binding.follow.text = "Following"
+                holder.binding.follow.setBackgroundColor(context.resources.getColor(R.color.greyButton))
                 isFollowed = true
             }
         }
@@ -44,13 +48,23 @@ class SearchAdapter(
                 Firebase.firestore.collection(Firebase.auth.currentUser!!.uid+ FOLLOWINGS).whereEqualTo("email", userList[position].email).get().addOnSuccessListener {
                     Firebase.firestore.collection(Firebase.auth.currentUser!!.uid+ FOLLOWINGS).document(it.documents[0].id).delete()
                     holder.binding.follow.text = "Follow"
+                    holder.binding.follow.setBackgroundColor(context.resources.getColor(R.color.button))
                     isFollowed = false
                 }
             } else {
                 Firebase.firestore.collection(Firebase.auth.currentUser!!.uid+ FOLLOWINGS).document().set(userList[position])
                 holder.binding.follow.text = "Following"
+                holder.binding.follow.setBackgroundColor(context.resources.getColor(R.color.greyButton))
                 isFollowed = true
             }
+        }
+
+        holder.binding.profileCard.setOnClickListener {
+            val bundle = Bundle()
+            val userId = userList[position].userId
+            bundle.putString("userId", userId)
+            holder.itemView.findNavController().navigate(R.id.action_search_to_viewProfile, bundle)
+            Log.e("TAG", "User id: $userId")
         }
     }
 }

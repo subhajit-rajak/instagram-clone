@@ -98,6 +98,7 @@ class Signup : AppCompatActivity() {
                             user.name = binding.usernameSignUp.text.toString()
                             user.email = binding.email.text.toString()
                             user.password = binding.passwordSignup.text.toString()
+                            user.userId = Firebase.auth.currentUser!!.uid
                             Firebase.firestore.collection(USER_NODE)
                                 .document(Firebase.auth.currentUser!!.uid).set(user)
                                 .addOnSuccessListener {

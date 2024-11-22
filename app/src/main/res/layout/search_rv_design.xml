@@ -9,6 +9,7 @@
     app:strokeWidth="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
@@ -44,7 +45,7 @@
             android:backgroundTint="@color/button"
             android:fontFamily="@font/inter_semibold"
             android:text="Follow"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/profile_image"
             app:layout_constraintEnd_toEndOf="parent"

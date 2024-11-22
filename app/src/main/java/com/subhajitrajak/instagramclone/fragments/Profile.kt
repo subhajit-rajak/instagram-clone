@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.ktx.auth
@@ -24,6 +25,7 @@ import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.adapters.ViewPagerAdapter
 import com.subhajitrajak.instagramclone.databinding.FragmentProfileBinding
+import com.subhajitrajak.instagramclone.utils.FOLLOWINGS
 import com.subhajitrajak.instagramclone.utils.USER_NODE
 
 class Profile : Fragment() {
@@ -137,10 +139,20 @@ class Profile : Fragment() {
                     binding.profileWebsite.text = user.website
                 }
 
-                if(!user.image.isNullOrEmpty()) {
-                    Picasso.get().load(user.image).into(binding.profileImage)
+                if(!user.image.isNullOrEmpty() && isAdded) {
+                    Glide.with(requireContext()).load(user.image).into(binding.profileImage)
                 }
             }
+
+        Firebase.firestore.collection(Firebase.auth.currentUser!!.uid+ FOLLOWINGS).get().addOnSuccessListener {
+            val followings = it.documents.size
+            binding.following.text = followings.toString()
+        }
+
+        Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).get().addOnSuccessListener {
+            val posts = it.documents.size
+            binding.posts.text = posts.toString()
+        }
     }
 
     private fun updateTabIcon(tab: TabLayout.Tab, isSelected: Boolean) {

@@ -3,9 +3,10 @@ package com.subhajitrajak.instagramclone.adapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.GestureDetector
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -24,6 +25,10 @@ import com.subhajitrajak.instagramclone.databinding.ReelDgBinding
 import com.subhajitrajak.instagramclone.utils.USER_NODE
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
+import androidx.navigation.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.subhajitrajak.instagramclone.utils.FOLLOWINGS
 
 
 class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
@@ -57,7 +62,33 @@ class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
                             .into(holder.binding.profileImage)
                     }
                     holder.binding.usernameReel.text = user.username
+
+                    setupFollowBottom(user, holder)
                 }
+        }
+
+        holder.binding.usernameReel.setOnClickListener {
+            val bundle = Bundle()
+            if (userId != Firebase.auth.currentUser!!.uid) {
+                bundle.putString("userId", userId)
+                holder.itemView.findNavController()
+                    .navigate(R.id.action_reel_to_viewProfile, bundle)
+                Log.e("TAG", "User id: $userId")
+            } else {
+                holder.itemView.findNavController().navigate(R.id.action_reel_to_profile)
+            }
+        }
+
+        holder.binding.profileImage.setOnClickListener {
+            val bundle = Bundle()
+            if (userId != Firebase.auth.currentUser!!.uid) {
+                bundle.putString("userId", userId)
+                holder.itemView.findNavController()
+                    .navigate(R.id.action_reel_to_viewProfile, bundle)
+                Log.e("TAG", "User id: $userId")
+            } else {
+                holder.itemView.findNavController().navigate(R.id.action_reel_to_profile)
+            }
         }
 
         val reel = reelList[position]
@@ -131,6 +162,40 @@ class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
 
         })
+    }
+
+    private fun setupFollowBottom(user: User, holder: ViewHolder) {
+        if(user.userId == Firebase.auth.currentUser!!.uid) {
+            holder.binding.followBtn.visibility = View.GONE
+        } else {
+            var isFollowed = false
+            Firebase.firestore.collection(Firebase.auth.currentUser!!.uid + FOLLOWINGS)
+                .whereEqualTo("email", user.email).get().addOnSuccessListener {
+                    if (it.documents.size == 0) {
+                        isFollowed = false
+                    } else {
+                        holder.binding.followBtn.text = "Following"
+                        isFollowed = true
+                    }
+                }
+            holder.binding.followBtn.setOnClickListener {
+                if (isFollowed) {
+                    Firebase.firestore.collection(Firebase.auth.currentUser!!.uid + FOLLOWINGS)
+                        .whereEqualTo("email", user.email).get().addOnSuccessListener {
+                            Firebase.firestore.collection(Firebase.auth.currentUser!!.uid + FOLLOWINGS)
+                                .document(it.documents[0].id).delete()
+                            holder.binding.followBtn.text = "Follow"
+                            isFollowed = false
+                        }
+                } else {
+                    Firebase.firestore.collection(Firebase.auth.currentUser!!.uid + FOLLOWINGS)
+                        .document().set(user).addOnSuccessListener {
+                            holder.binding.followBtn.text = "Following"
+                            isFollowed = true
+                        }
+                }
+            }
+        }
     }
 
     private fun showMuteButtonTemporarily(holder: ViewHolder) {

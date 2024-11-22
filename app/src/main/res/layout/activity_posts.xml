@@ -18,11 +18,11 @@
             android:background="@color/white"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:titleTextColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="New Post" />
+            app:title="New Post"
+            app:titleTextColor="@color/black" />
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/select_image"
@@ -45,13 +45,13 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="56dp"
             android:layout_marginEnd="20dp"
+            android:background="@drawable/edit_text_shape"
             android:ems="10"
-            android:padding="16dp"
             android:hint="@string/write_a_caption"
+            android:inputType="textMultiLine"
+            android:padding="16dp"
             android:textColor="@color/text_box_text"
             android:textColorHint="@color/text_box_hint_text"
-            android:inputType="textMultiLine"
-            android:background="@drawable/edit_text_shape"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/select_image" />

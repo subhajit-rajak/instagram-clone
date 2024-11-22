@@ -2,6 +2,7 @@ package com.subhajitrajak.instagramclone.models
 
 class User {
     var image:String?=null
+    var userId:String?=null
     var name:String?=null
     var username:String?=null
     var email:String?=null
