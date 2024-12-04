@@ -9,13 +9,13 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.subhajitrajak.instagramclone.models.Reel
 import com.subhajitrajak.instagramclone.databinding.MyReelRvDesignBinding
 
-class MyReelAdapter(var context: Context, var reelList: ArrayList<Reel>) :
+class MyReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
     RecyclerView.Adapter<MyReelAdapter.ViewHolder>() {
     inner class ViewHolder(var binding: MyReelRvDesignBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var binding = MyReelRvDesignBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = MyReelRvDesignBinding.inflate(LayoutInflater.from(context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -25,7 +25,7 @@ class MyReelAdapter(var context: Context, var reelList: ArrayList<Reel>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Glide.with(context)
-            .load(reelList.get(position).reelUrl)
+            .load(reelList[position].reelUrl)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.binding.reelCanvas);
     }

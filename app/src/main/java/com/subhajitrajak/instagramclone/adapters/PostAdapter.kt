@@ -22,6 +22,8 @@ import com.subhajitrajak.instagramclone.models.Post
 import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.databinding.PostItemHomeBinding
+import com.subhajitrajak.instagramclone.utils.COMMENTS
+import com.subhajitrajak.instagramclone.utils.POST
 import com.subhajitrajak.instagramclone.utils.USER_NODE
 
 
@@ -78,9 +80,45 @@ class PostAdapter(var context: Context, private var postList: ArrayList<Post>) :
             }
         }
 
-        val postRef = Firebase.firestore.collection("Post").document(postList[position].postId)
+        val postRef = Firebase.firestore.collection(POST).document(postList[position].postId)
         val userId = Firebase.auth.currentUser!!.uid
         handlePostLikes(holder, postRef, userId)
+        handlePostComments(holder, postRef, postList[position].uid, postList[position].postId)
+    }
+
+    private fun handlePostComments(
+        holder: MyHolder,
+        postRef: DocumentReference,
+        userId: String,
+        postId: String
+    ) {
+        postRef.get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()) {
+                // Retrieve the current comments list
+                val comments = documentSnapshot.get(COMMENTS) as? List<Map<String, Any>>
+                if (comments != null) {
+                    holder.binding.commentCount.text = comments.size.toString()
+                } else {
+                    holder.binding.commentCount.text = R.string._0.toString()
+                }
+            } else {
+                holder.binding.commentCount.text = R.string._0.toString()
+            }
+        }
+
+        holder.binding.comments.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("postId", postId)
+            bundle.putString("userId", userId)
+            holder.itemView.findNavController().navigate(R.id.action_home_to_comments, bundle)
+        }
+
+        holder.binding.comment.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("postId", postId)
+            bundle.putString("userId", userId)
+            holder.itemView.findNavController().navigate(R.id.action_home_to_comments, bundle)
+        }
     }
 
     private fun handlePostLikes(

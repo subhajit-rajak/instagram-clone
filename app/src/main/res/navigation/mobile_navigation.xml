@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_home_to_profile"
             app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_home_to_comments"
+            app:destination="@id/comments" />
     </fragment>
     <fragment
         android:id="@+id/search"
@@ -83,4 +86,16 @@
         android:name="com.subhajitrajak.instagramclone.fragments.ViewProfile"
         android:label="fragment_view_profile"
         tools:layout="@layout/fragment_view_profile" />
+    <dialog
+        android:id="@+id/comments"
+        android:name="com.subhajitrajak.instagramclone.fragments.Comments"
+        android:label="fragment_comments"
+        tools:layout="@layout/fragment_comments" >
+        <action
+            android:id="@+id/action_comments_to_viewProfile"
+            app:destination="@id/viewProfile" />
+        <action
+            android:id="@+id/action_comments_to_profile"
+            app:destination="@id/profile" />
+    </dialog>
 </navigation>

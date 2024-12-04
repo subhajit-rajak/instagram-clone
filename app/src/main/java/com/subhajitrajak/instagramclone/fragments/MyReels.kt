@@ -24,17 +24,17 @@ class MyReels : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding= FragmentMyReelsBinding.inflate(inflater, container, false)
-        var reelList=ArrayList<Reel>()
-        var adapter = MyReelAdapter(requireContext(), reelList)
+        val reelList=ArrayList<Reel>()
+        val adapter = MyReelAdapter(requireContext(), reelList)
         binding.rv.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         binding.rv.adapter = adapter
 
         Firebase.firestore.collection(Firebase.auth.currentUser!!.uid+ REEL).get().addOnSuccessListener {
-            var tempList = arrayListOf<Reel>()
+            val tempList = arrayListOf<Reel>()
             for (i in it.documents) {
-                var reel: Reel =i.toObject<Reel>()!!
+                val reel: Reel =i.toObject<Reel>()!!
                 tempList.add(reel)
             }
             reelList.addAll(tempList)
