@@ -34,6 +34,6 @@ class MainActivity : AppCompatActivity() {
             else
                 startActivity(Intent(this, Home::class.java))
             finish()
-        }, 2000)
+        }, 100)
     }
 }

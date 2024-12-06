@@ -17,27 +17,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <View
                 android:id="@+id/profile_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:src="@drawable/profile"
+                android:background="@drawable/shimmer_bg"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <View
                 android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="10dp"
                 android:layout_marginStart="12dp"
-                android:text="@string/sampleUsername"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
+                android:background="@drawable/shimmer_bg"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_image"
                 app:layout_constraintStart_toEndOf="@+id/profile_image"
                 app:layout_constraintTop_toTopOf="@id/profile_image" />
@@ -58,7 +55,8 @@
         <ImageView
             android:id="@+id/post_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="400dp"
+            android:background="@color/shimmer"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -74,15 +72,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <View
                 android:id="@+id/like_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="10dp"
                 android:layout_marginStart="4dp"
-                android:text="@string/_0"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold"
+                android:background="@drawable/shimmer_bg"
                 app:layout_constraintBottom_toBottomOf="@+id/like"
                 app:layout_constraintStart_toEndOf="@+id/like"
                 app:layout_constraintTop_toTopOf="@+id/like"
@@ -98,15 +93,12 @@
                 app:layout_constraintTop_toTopOf="@+id/like"
                 app:tint="@color/black" />
 
-            <TextView
+            <View
                 android:id="@+id/comment_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="10dp"
                 android:layout_marginStart="4dp"
-                android:text="@string/_0"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold"
+                android:background="@drawable/shimmer_bg"
                 app:layout_constraintBottom_toBottomOf="@+id/like"
                 app:layout_constraintStart_toEndOf="@+id/comment"
                 app:layout_constraintTop_toTopOf="@+id/like"
@@ -122,15 +114,12 @@
                 app:layout_constraintTop_toTopOf="@+id/comment"
                 app:tint="@color/black" />
 
-            <TextView
+            <View
                 android:id="@+id/share_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="10dp"
                 android:layout_marginStart="4dp"
-                android:text="@string/_0"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold"
+                android:background="@drawable/shimmer_bg"
                 app:layout_constraintBottom_toBottomOf="@+id/like"
                 app:layout_constraintStart_toEndOf="@+id/share"
                 app:layout_constraintTop_toTopOf="@+id/like"
@@ -148,36 +137,33 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
+        <View
             android:id="@+id/post_caption"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:layout_height="10dp"
+            android:background="@drawable/shimmer_bg"
             android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="4dp"
-            android:text="@string/sampleText" />
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/comments"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View all comments"
+            android:layout_width="200dp"
+            android:layout_height="10dp"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/shimmer_bg"
             android:textColor="@color/grey"
             android:textSize="14sp" />
 
-        <TextView
+        <View
             android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="12 hours ago"
+            android:layout_width="100dp"
+            android:layout_height="10dp"
+            android:background="@drawable/shimmer_bg"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
-            android:textColor="@color/grey"
-            android:textSize="14sp" />
+            android:layout_marginBottom="16dp"/>
 
 
     </LinearLayout>

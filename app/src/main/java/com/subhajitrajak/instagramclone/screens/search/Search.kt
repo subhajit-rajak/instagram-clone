@@ -1,5 +1,6 @@
 package com.subhajitrajak.instagramclone.screens.search
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,43 +27,59 @@ class Search : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.rv.visibility = View.GONE
+        binding.shimmerRv.startShimmer()
+        binding.shimmerRv.visibility = View.VISIBLE
 
         binding.rv.layoutManager = LinearLayoutManager(requireContext())
         adapter = SearchAdapter(requireContext(), userList)
         binding.rv.adapter = adapter
 
-        Firebase.firestore.collection(USER_NODE).get().addOnSuccessListener {
-            val tempList = ArrayList<User>()
-            userList.clear()
-            for(userObj in it.documents) {
-                if(userObj.id == FirebaseAuth.getInstance().currentUser!!.uid) continue
+        Firebase.firestore.collection(USER_NODE).get()
+            .addOnSuccessListener {
+                val tempList = ArrayList<User>()
+                userList.clear()
+                for (userObj in it.documents) {
+                    if (userObj.id == FirebaseAuth.getInstance().currentUser!!.uid) continue
 
-                val user: User = userObj.toObject<User>()!!
-                tempList.add(user)
+                    val user: User = userObj.toObject<User>()!!
+                    tempList.add(user)
+                }
+                userList.addAll(tempList)
+                adapter.notifyDataSetChanged()
+
+                binding.shimmerRv.stopShimmer()
+                binding.shimmerRv.visibility = View.GONE
+                binding.rv.visibility = View.VISIBLE
             }
-            userList.addAll(tempList)
-            adapter.notifyDataSetChanged()
-        }
+            .addOnFailureListener {
+                binding.shimmerRv.stopShimmer()
+                binding.shimmerRv.visibility = View.GONE
+                binding.rv.visibility = View.VISIBLE
+            }
 
         binding.searchButton.setOnClickListener {
             val text = binding.searchView.text.toString()
 
-            Firebase.firestore.collection(USER_NODE).whereEqualTo("name", text).get().addOnSuccessListener {
-                val tempList = ArrayList<User>()
-                userList.clear()
-                if(!it.isEmpty) {
-                    for(userObj in it.documents) {
-                        if(userObj.id == FirebaseAuth.getInstance().currentUser!!.uid) continue
+            Firebase.firestore.collection(USER_NODE).whereEqualTo("name", text).get()
+                .addOnSuccessListener {
+                    val tempList = ArrayList<User>()
+                    userList.clear()
+                    if (!it.isEmpty) {
+                        for (userObj in it.documents) {
+                            if (userObj.id == FirebaseAuth.getInstance().currentUser!!.uid) continue
 
-                        val user: User = userObj.toObject<User>()!!
-                        tempList.add(user)
+                            val user: User = userObj.toObject<User>()!!
+                            tempList.add(user)
+                        }
+                        userList.addAll(tempList)
+                        adapter.notifyDataSetChanged()
                     }
-                    userList.addAll(tempList)
-                    adapter.notifyDataSetChanged()
                 }
-            }
         }
     }
 }

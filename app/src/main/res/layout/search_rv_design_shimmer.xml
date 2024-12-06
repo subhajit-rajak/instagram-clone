@@ -16,38 +16,33 @@
         android:paddingTop="16dp"
         android:paddingEnd="32dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <View
             android:id="@+id/profile_image"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/profile"
+            android:background="@drawable/shimmer_bg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <View
             android:id="@+id/username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="10dp"
             android:layout_marginStart="16dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/sampleUsername"
-            android:textColor="@color/black"
-            android:textSize="14sp"
+            android:background="@drawable/shimmer_bg"
             app:layout_constraintBottom_toTopOf="@+id/name"
             app:layout_constraintStart_toEndOf="@+id/profile_image"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <TextView
+        <View
             android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="10dp"
+            android:background="@drawable/shimmer_bg"
+            android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/sampleName"
-            android:textColor="@color/grey"
-            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/profile_image"
             app:layout_constraintTop_toBottomOf="@+id/username" />

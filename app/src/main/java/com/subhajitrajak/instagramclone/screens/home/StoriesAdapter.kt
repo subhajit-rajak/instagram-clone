@@ -22,7 +22,7 @@ class StoriesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Glide.with(context).load(followingList[position].image).placeholder(R.drawable.profile).into(holder.binding.profilePic)
-        holder.binding.username.text = followingList[position].name
+        holder.binding.username.text = followingList[position].username
     }
 
     override fun getItemCount(): Int = followingList.size

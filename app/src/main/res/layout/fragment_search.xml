@@ -14,15 +14,17 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
+        android:autofillHints="username"
         android:inputType="text"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
-        android:hint="Search"
+        android:hint="@string/search"
         android:textColorHint="@color/text_box_hint_text"
         android:background="@drawable/edit_text_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="VisualLintTextFieldSize" />
 
 
     <ImageView
@@ -30,17 +32,41 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginEnd="20dp"
+        android:contentDescription="@string/search"
         android:src="@drawable/search"
         app:tint="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/searchView"
         app:layout_constraintEnd_toEndOf="@+id/searchView"
         app:layout_constraintTop_toTopOf="@+id/searchView" />
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerRv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView">
+
+        <include layout="@layout/search_rv_design_shimmer"/>
+
+        <include layout="@layout/search_rv_design_shimmer"/>
+
+        <include layout="@layout/search_rv_design_shimmer"/>
+
+        <include layout="@layout/search_rv_design_shimmer"/>
+
+        <include layout="@layout/search_rv_design_shimmer"/>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

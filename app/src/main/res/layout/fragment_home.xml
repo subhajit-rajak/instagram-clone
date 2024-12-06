@@ -85,11 +85,12 @@
                     android:id="@+id/stories_rv"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/profilePic"
-                    app:layout_constraintTop_toTopOf="@+id/profilePic"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:listitem="@layout/stories_rv_design" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -110,11 +111,30 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+                
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider"
+                    android:visibility="visible">
+
+                    <include layout="@layout/post_item_home_shimmer"/>
+
+                    <include layout="@layout/post_item_home_shimmer"/>
+
+                    <include layout="@layout/post_item_home_shimmer"/>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/post_rv"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:visibility="invisible"
                     tools:listitem="@layout/post_item_home"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

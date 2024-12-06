@@ -1,29 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/storyRing"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/insta_story_ring"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/insta_story_ring_stroke"
+        app:layout_constraintBottom_toBottomOf="@+id/storyRing"
+        app:layout_constraintEnd_toEndOf="@+id/storyRing"
+        app:layout_constraintStart_toStartOf="@+id/storyRing"
+        app:layout_constraintTop_toTopOf="@+id/storyRing"
+        tools:ignore="ContentDescription" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilePic"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginStart="16dp"
         android:scaleType="centerCrop"
         android:src="@drawable/profile"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/storyRing"
+        app:layout_constraintEnd_toEndOf="@+id/storyRing"
+        app:layout_constraintStart_toStartOf="@+id/storyRing"
+        app:layout_constraintTop_toTopOf="@+id/storyRing" />
 
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="username"
+        android:layout_marginTop="2dp"
+        android:text="@string/sampleUsername"
         android:textColor="@color/black"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/profilePic"
-        app:layout_constraintStart_toStartOf="@+id/profilePic"
-        app:layout_constraintTop_toBottomOf="@+id/profilePic" />
+        app:layout_constraintEnd_toEndOf="@+id/storyRing"
+        app:layout_constraintStart_toStartOf="@+id/storyRing"
+        app:layout_constraintTop_toBottomOf="@+id/storyRing" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

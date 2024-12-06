@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -39,6 +40,10 @@ class Home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.postRv.visibility = View.GONE
+        binding.shimmerRv.startShimmer()
+        binding.shimmerRv.visibility = View.VISIBLE
+
         Firebase.firestore.collection(USER_NODE).document(FirebaseAuth.getInstance().currentUser!!.uid).get().addOnSuccessListener {
             val user=it.toObject<User>()
             Glide.with(requireContext()).load(user!!.image).placeholder(R.drawable.profile).into(binding.profilePic)
@@ -67,6 +72,17 @@ class Home : Fragment() {
                 }
                 postList.addAll(tempList)
                 adapter.notifyDataSetChanged()
+
+                binding.shimmerRv.stopShimmer()
+                binding.shimmerRv.visibility = View.GONE
+                binding.postRv.visibility = View.VISIBLE
+            }
+            .addOnFailureListener {
+                binding.shimmerRv.stopShimmer()
+                binding.shimmerRv.visibility = View.GONE
+                binding.postRv.visibility = View.VISIBLE
+
+                Toast.makeText(requireContext(), "Couldn't refresh feed", Toast.LENGTH_SHORT).show()
             }
 
         Firebase.firestore.collection(Firebase.auth.currentUser!!.uid+ FOLLOWINGS).get().addOnSuccessListener {

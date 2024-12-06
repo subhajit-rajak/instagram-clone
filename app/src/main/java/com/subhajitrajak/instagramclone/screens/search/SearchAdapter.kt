@@ -31,7 +31,8 @@ class SearchAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Glide.with(context).load(userList[position].image).placeholder(R.drawable.profile).into(holder.binding.profileImage)
-        holder.binding.username.text = userList[position].name
+        holder.binding.username.text = userList[position].username
+        holder.binding.name.text = userList[position].name
 
         var isFollowed = false
         Firebase.firestore.collection(Firebase.auth.currentUser!!.uid+ FOLLOWINGS).whereEqualTo("email", userList[position].email).get().addOnSuccessListener {
