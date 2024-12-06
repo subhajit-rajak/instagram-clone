@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.fragments
+package com.subhajitrajak.instagramclone.screens.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,7 +12,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 import com.subhajitrajak.instagramclone.models.Post
-import com.subhajitrajak.instagramclone.adapters.MyPostRvAdapter
 import com.subhajitrajak.instagramclone.databinding.FragmentMyPostsBinding
 
 class MyPosts : Fragment() {

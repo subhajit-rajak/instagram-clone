@@ -7,7 +7,7 @@
     android:background="@drawable/bottom_sheet_shape"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".fragments.Add">
+    tools:context=".screens.add.Add">
 
     <com.google.android.material.bottomsheet.BottomSheetDragHandleView
         style="@style/Widget.Material3.BottomSheet.DragHandle"

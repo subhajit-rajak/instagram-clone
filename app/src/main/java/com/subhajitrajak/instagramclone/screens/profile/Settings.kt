@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.fragments
+package com.subhajitrajak.instagramclone.screens.profile
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,12 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
-import com.squareup.picasso.Picasso
-import com.subhajitrajak.instagramclone.Login
+import com.subhajitrajak.instagramclone.screens.login.Login
 import com.subhajitrajak.instagramclone.databinding.FragmentSettingsBinding
 import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.utils.USER_NODE

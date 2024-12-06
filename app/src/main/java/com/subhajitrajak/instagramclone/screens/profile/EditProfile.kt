@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.fragments
+package com.subhajitrajak.instagramclone.screens.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater

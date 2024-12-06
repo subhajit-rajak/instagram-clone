@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.fragments
+package com.subhajitrajak.instagramclone.screens.global
 
 import android.content.Intent
 import android.os.Bundle

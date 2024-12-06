@@ -1,10 +1,9 @@
-package com.subhajitrajak.instagramclone.uploads
+package com.subhajitrajak.instagramclone.screens.add
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
@@ -22,12 +21,12 @@ class Posts : AppCompatActivity() {
     private val binding by lazy {
         ActivityPostsBinding.inflate(layoutInflater)
     }
-    var imageUrl: String? = null
+    private var imageUrl: String? = null
     private val launcher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        binding.selectImage.setImageURI(uri)
         uri?.let {
             uploadImage(uri, POST_FOLDER) { url ->
                 if (url != null) {
-                    binding.selectImage.setImageURI(uri)
                     imageUrl = url
                 }
             }

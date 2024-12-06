@@ -6,7 +6,7 @@
     app:startDestination="@id/home">
     <fragment
         android:id="@+id/home"
-        android:name="com.subhajitrajak.instagramclone.fragments.Home"
+        android:name="com.subhajitrajak.instagramclone.screens.home.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/search"
-        android:name="com.subhajitrajak.instagramclone.fragments.Search"
+        android:name="com.subhajitrajak.instagramclone.screens.search.Search"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
@@ -30,12 +30,12 @@
     </fragment>
     <dialog
         android:id="@+id/add"
-        android:name="com.subhajitrajak.instagramclone.fragments.Add"
+        android:name="com.subhajitrajak.instagramclone.screens.add.Add"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" />
     <fragment
         android:id="@+id/reel"
-        android:name="com.subhajitrajak.instagramclone.fragments.Reel"
+        android:name="com.subhajitrajak.instagramclone.screens.reels.Reel"
         android:label="fragment_reel"
         tools:layout="@layout/fragment_reel" >
         <action
@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/profile"
-        android:name="com.subhajitrajak.instagramclone.fragments.Profile"
+        android:name="com.subhajitrajak.instagramclone.screens.profile.Profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -59,22 +59,22 @@
     </fragment>
     <fragment
         android:id="@+id/editProfile"
-        android:name="com.subhajitrajak.instagramclone.fragments.EditProfile"
+        android:name="com.subhajitrajak.instagramclone.screens.profile.EditProfile"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
     <fragment
         android:id="@+id/settings"
-        android:name="com.subhajitrajak.instagramclone.fragments.Settings"
+        android:name="com.subhajitrajak.instagramclone.screens.profile.Settings"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/viewPost"
-        android:name="com.subhajitrajak.instagramclone.fragments.ViewPost"
+        android:name="com.subhajitrajak.instagramclone.screens.global.ViewPost"
         android:label="fragment_view_post"
         tools:layout="@layout/fragment_view_post" />
     <fragment
         android:id="@+id/myPosts"
-        android:name="com.subhajitrajak.instagramclone.fragments.MyPosts"
+        android:name="com.subhajitrajak.instagramclone.screens.profile.MyPosts"
         android:label="fragment_my_posts"
         tools:layout="@layout/fragment_my_posts" >
         <action
@@ -83,12 +83,12 @@
     </fragment>
     <fragment
         android:id="@+id/viewProfile"
-        android:name="com.subhajitrajak.instagramclone.fragments.ViewProfile"
+        android:name="com.subhajitrajak.instagramclone.screens.global.ViewProfile"
         android:label="fragment_view_profile"
         tools:layout="@layout/fragment_view_profile" />
     <dialog
         android:id="@+id/comments"
-        android:name="com.subhajitrajak.instagramclone.fragments.Comments"
+        android:name="com.subhajitrajak.instagramclone.screens.global.Comments"
         android:label="fragment_comments"
         tools:layout="@layout/fragment_comments" >
         <action

@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone
+package com.subhajitrajak.instagramclone.screens.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,6 +15,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
+import com.subhajitrajak.instagramclone.Home
+import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.utils.USER_NODE
 import com.subhajitrajak.instagramclone.utils.USER_PROFILE_FOLDER

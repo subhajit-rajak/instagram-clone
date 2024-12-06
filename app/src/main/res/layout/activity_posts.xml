@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".uploads.Posts">
+    tools:context=".screens.add.Posts">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/select_image"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="400dp"
             android:layout_marginTop="32dp"
             android:scaleType="fitCenter"
@@ -35,8 +35,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
             app:riv_border_color="@color/black"
-            app:riv_border_width="2dip"
-            app:riv_corner_radius="10dip" />
+            app:riv_border_width="2dp"
+            app:riv_corner_radius="10dp" />
 
         <EditText
             android:id="@+id/caption"

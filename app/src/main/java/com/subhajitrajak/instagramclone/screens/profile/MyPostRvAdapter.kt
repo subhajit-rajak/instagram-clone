@@ -1,21 +1,15 @@
-package com.subhajitrajak.instagramclone.adapters
+package com.subhajitrajak.instagramclone.screens.profile
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.squareup.picasso.Picasso
 import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.models.Post
 import com.subhajitrajak.instagramclone.databinding.MyPostRvDesignBinding
-import com.subhajitrajak.instagramclone.fragments.MyPostsDirections
-import com.subhajitrajak.instagramclone.fragments.ViewPost
 
 class MyPostRvAdapter(var context: Context, private var postList: ArrayList<Post>) :
     RecyclerView.Adapter<MyPostRvAdapter.ViewHolder>() {

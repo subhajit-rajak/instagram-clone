@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.adapters
+package com.subhajitrajak.instagramclone.screens.home
 
 import android.annotation.SuppressLint
 import android.content.Context

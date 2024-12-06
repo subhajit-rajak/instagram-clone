@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone
+package com.subhajitrajak.instagramclone.screens.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.subhajitrajak.instagramclone.Home
+import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.databinding.ActivityLoginBinding
 

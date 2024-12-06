@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.uploads
+package com.subhajitrajak.instagramclone.screens.add
 
 import android.app.ProgressDialog
 import android.content.Intent

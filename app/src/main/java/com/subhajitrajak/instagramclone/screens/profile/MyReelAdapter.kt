@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.adapters
+package com.subhajitrajak.instagramclone.screens.profile
 
 import android.content.Context
 import android.view.LayoutInflater

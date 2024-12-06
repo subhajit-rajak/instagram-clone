@@ -1,16 +1,13 @@
-package com.subhajitrajak.instagramclone.fragments
+package com.subhajitrajak.instagramclone.screens.reels
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager.OnPageChangeListener
-import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
-import com.subhajitrajak.instagramclone.adapters.ReelAdapter
 import com.subhajitrajak.instagramclone.databinding.FragmentReelBinding
 import com.subhajitrajak.instagramclone.models.Reel
 import com.subhajitrajak.instagramclone.utils.REEL

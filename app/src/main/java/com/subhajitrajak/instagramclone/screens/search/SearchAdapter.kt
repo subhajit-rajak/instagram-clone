@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.adapters
+package com.subhajitrajak.instagramclone.screens.search
 
 import android.content.Context
 import android.os.Bundle

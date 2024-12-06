@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.fragments
+package com.subhajitrajak.instagramclone.screens.add
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.subhajitrajak.instagramclone.databinding.FragmentAddBinding
-import com.subhajitrajak.instagramclone.uploads.Posts
-import com.subhajitrajak.instagramclone.uploads.Reels
 
 
 class Add : BottomSheetDialogFragment() {

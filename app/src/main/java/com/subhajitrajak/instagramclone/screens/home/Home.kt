@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.fragments
+package com.subhajitrajak.instagramclone.screens.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -20,8 +20,6 @@ import com.google.firebase.ktx.Firebase
 import com.subhajitrajak.instagramclone.models.Post
 import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.R
-import com.subhajitrajak.instagramclone.adapters.PostAdapter
-import com.subhajitrajak.instagramclone.adapters.StoriesAdapter
 import com.subhajitrajak.instagramclone.databinding.FragmentHomeBinding
 import com.subhajitrajak.instagramclone.utils.FOLLOWINGS
 import com.subhajitrajak.instagramclone.utils.POST

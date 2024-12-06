@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.adapters
+package com.subhajitrajak.instagramclone.screens.reels
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -26,7 +26,6 @@ import com.subhajitrajak.instagramclone.utils.USER_NODE
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.navigation.findNavController
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.subhajitrajak.instagramclone.utils.FOLLOWINGS
 

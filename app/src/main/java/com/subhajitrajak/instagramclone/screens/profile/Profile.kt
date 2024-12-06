@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.fragments
+package com.subhajitrajak.instagramclone.screens.profile
 
 import android.content.Intent
 import android.graphics.PorterDuff
@@ -20,10 +20,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
-import com.squareup.picasso.Picasso
 import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.R
-import com.subhajitrajak.instagramclone.adapters.ViewPagerAdapter
 import com.subhajitrajak.instagramclone.databinding.FragmentProfileBinding
 import com.subhajitrajak.instagramclone.utils.FOLLOWINGS
 import com.subhajitrajak.instagramclone.utils.USER_NODE

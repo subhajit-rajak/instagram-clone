@@ -1,4 +1,4 @@
-package com.subhajitrajak.instagramclone.fragments
+package com.subhajitrajak.instagramclone.screens.search
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +11,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 import com.subhajitrajak.instagramclone.models.User
-import com.subhajitrajak.instagramclone.adapters.SearchAdapter
 import com.subhajitrajak.instagramclone.databinding.FragmentSearchBinding
 import com.subhajitrajak.instagramclone.utils.USER_NODE
 

@@ -13,20 +13,20 @@
         android:theme="@style/Theme.InstagramClone"
         tools:targetApi="31">
         <activity
-            android:name=".uploads.Reels"
+            android:name=".screens.add.Reels"
             android:exported="false" />
         <activity
-            android:name=".uploads.Posts"
+            android:name=".screens.add.Posts"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".screens.login.Login"
             android:exported="false" />
         <activity
             android:name=".Home"
             android:exported="false"
             android:label="@string/title_activity_home" />
         <activity
-            android:name=".Signup"
+            android:name=".screens.login.Signup"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
