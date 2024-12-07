@@ -22,6 +22,8 @@ import com.subhajitrajak.instagramclone.databinding.FragmentViewPostBinding
 import com.subhajitrajak.instagramclone.models.Post
 import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.utils.POST
+import com.subhajitrajak.instagramclone.utils.POST_ID
+import com.subhajitrajak.instagramclone.utils.USER_ID
 import com.subhajitrajak.instagramclone.utils.USER_NODE
 
 class ViewPost : Fragment() {
@@ -41,10 +43,18 @@ class ViewPost : Fragment() {
             findNavController().popBackStack()
         }
 
-        val postId = arguments?.getString("postId")
+        val postId = arguments?.getString(POST_ID)
+        val userId = arguments?.getString(USER_ID)
         Log.e("TAG", "Post id: $postId")
         if (postId != null) fetchUserData(postId)
         else Toast.makeText(requireContext(), "Post Not Found", Toast.LENGTH_SHORT).show()
+
+        binding.moreSettings.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString(POST_ID, postId)
+            bundle.putString(USER_ID, userId)
+            findNavController().navigate(R.id.action_viewPost_to_postSettings, bundle)
+        }
     }
 
     private fun fetchUserData(postId: String) {

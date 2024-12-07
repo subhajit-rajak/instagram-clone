@@ -30,7 +30,7 @@ class Login : AppCompatActivity() {
         }
 
         val text = "<font color=#6B6B6B>Don't have an account? </font> <font color=#00A3FF>Sign up.</font>"
-        binding.createNewAccountBtn.setText(Html.fromHtml(text))
+        binding.createNewAccountBtn.text = Html.fromHtml(text)
 
         binding.createNewAccountBtn.setOnClickListener {
             startActivity(Intent(this@Login, Signup::class.java))
@@ -38,7 +38,7 @@ class Login : AppCompatActivity() {
         }
 
         binding.login.setOnClickListener {
-            if(binding.email.text.toString().equals("") or binding.password.text.toString().equals("")) {
+            if((binding.email.text.toString() == "") or (binding.password.text.toString() == "")) {
                 Toast.makeText(this@Login, "Fill all details", Toast.LENGTH_SHORT).show()
             } else {
                 val user = User(binding.email.text.toString(), binding.password.text.toString())

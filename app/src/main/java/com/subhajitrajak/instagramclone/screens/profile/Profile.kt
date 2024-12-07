@@ -95,7 +95,7 @@ class Profile : Fragment() {
                     icon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.black), PorterDuff.Mode.SRC_IN)
                 }
                 1 -> {
-                    icon.setImageResource(R.drawable.reels_filled)
+                    icon.setImageResource(R.drawable.reels)
                     icon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.grey), PorterDuff.Mode.SRC_IN)
                 }
             }

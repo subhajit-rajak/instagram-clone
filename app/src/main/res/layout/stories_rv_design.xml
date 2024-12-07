@@ -17,8 +17,8 @@
         tools:ignore="ContentDescription" />
 
     <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
         android:scaleType="centerCrop"
         android:src="@drawable/insta_story_ring_stroke"
         app:layout_constraintBottom_toBottomOf="@+id/storyRing"

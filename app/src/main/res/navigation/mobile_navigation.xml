@@ -71,7 +71,11 @@
         android:id="@+id/viewPost"
         android:name="com.subhajitrajak.instagramclone.screens.global.ViewPost"
         android:label="fragment_view_post"
-        tools:layout="@layout/fragment_view_post" />
+        tools:layout="@layout/fragment_view_post" >
+        <action
+            android:id="@+id/action_viewPost_to_postSettings"
+            app:destination="@id/postSettings" />
+    </fragment>
     <fragment
         android:id="@+id/myPosts"
         android:name="com.subhajitrajak.instagramclone.screens.profile.MyPosts"
@@ -96,6 +100,15 @@
             app:destination="@id/viewProfile" />
         <action
             android:id="@+id/action_comments_to_profile"
+            app:destination="@id/profile" />
+    </dialog>
+    <dialog
+        android:id="@+id/postSettings"
+        android:name="com.subhajitrajak.instagramclone.screens.global.PostSettings"
+        android:label="fragment_post_settings"
+        tools:layout="@layout/fragment_post_settings" >
+        <action
+            android:id="@+id/action_postSettings_to_profile"
             app:destination="@id/profile" />
     </dialog>
 </navigation>

@@ -8,3 +8,6 @@ const val POST="Post"
 const val REEL="Reel"
 const val COMMENTS="comments"
 const val FOLLOWINGS="Followings"
+
+const val POST_ID="postId"
+const val USER_ID="userId"

@@ -2,6 +2,7 @@ package com.subhajitrajak.instagramclone.screens.add
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
@@ -9,6 +10,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 import com.subhajitrajak.instagramclone.Home
+import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.models.Post
 import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.utils.POST
@@ -23,11 +25,13 @@ class Posts : AppCompatActivity() {
     }
     private var imageUrl: String? = null
     private val launcher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        binding.selectImage.setImageURI(uri)
+        binding.loading.text = getString(R.string.uploading)
         uri?.let {
             uploadImage(uri, POST_FOLDER) { url ->
                 if (url != null) {
                     imageUrl = url
+                    binding.selectImage.setImageURI(uri)
+                    binding.loading.visibility = View.GONE
                 }
             }
         }

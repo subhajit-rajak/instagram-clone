@@ -10,6 +10,8 @@ import com.bumptech.glide.Glide
 import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.models.Post
 import com.subhajitrajak.instagramclone.databinding.MyPostRvDesignBinding
+import com.subhajitrajak.instagramclone.utils.POST_ID
+import com.subhajitrajak.instagramclone.utils.USER_ID
 
 class MyPostRvAdapter(var context: Context, private var postList: ArrayList<Post>) :
     RecyclerView.Adapter<MyPostRvAdapter.ViewHolder>() {
@@ -30,7 +32,8 @@ class MyPostRvAdapter(var context: Context, private var postList: ArrayList<Post
 
         holder.binding.postCanvas.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("postId", postList[position].postId)
+            bundle.putString(POST_ID, postList[position].postId)
+            bundle.putString(USER_ID, postList[position].uid)
             holder.itemView.findNavController().navigate(R.id.viewPost, bundle)
         }
     }

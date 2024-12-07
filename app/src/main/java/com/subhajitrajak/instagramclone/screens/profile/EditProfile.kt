@@ -18,17 +18,18 @@ import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.databinding.FragmentEditProfileBinding
 import com.subhajitrajak.instagramclone.utils.USER_NODE
 import com.subhajitrajak.instagramclone.utils.USER_PROFILE_FOLDER
+import com.subhajitrajak.instagramclone.utils.isUsernameValid
 import com.subhajitrajak.instagramclone.utils.uploadImage
+import com.subhajitrajak.instagramclone.utils.usernameAlreadyExists
 
 class EditProfile : Fragment() {
     private lateinit var binding: FragmentEditProfileBinding
     private lateinit var user: User
-    private val launcher = registerForActivityResult(ActivityResultContracts.GetContent()) {
-            uri->
+    private val launcher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         uri?.let {
             uploadImage(uri, USER_PROFILE_FOLDER) {
-                if(it!=null) {
-                    user.image=it
+                if (it != null) {
+                    user.image = it
                     binding.editProfilePhoto.setImageURI(uri)
                 }
             }
@@ -72,26 +73,55 @@ class EditProfile : Fragment() {
         }
 
         binding.saveBtn.setOnClickListener {
-            user.name = binding.editName.text.toString()
-            user.username = binding.editUsername.text.toString()
-            user.website = binding.editWebsite.text.toString()
-            user.bio = binding.editBio.text.toString()
-            user.email = binding.editEmail.text.toString()
-            user.phone = binding.editPhone.text.toString()
-            user.gender = binding.editGender.text.toString()
+            val username = binding.editUsername.text.toString()
+            if (!isUsernameValid(username)) {
+                Toast.makeText(
+                    requireContext(),
+                    "the username can only use letters, numbers, underscores and periods",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                usernameAlreadyExists(username) { exists ->
+                    if (exists) {
+                        Toast.makeText(
+                            requireContext(),
+                            "The username $username is not available",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    } else {
+                        user.name = binding.editName.text.toString()
+                        user.username = username
+                        user.website = binding.editWebsite.text.toString()
+                        user.bio = binding.editBio.text.toString()
+                        user.email = binding.editEmail.text.toString()
+                        user.phone = binding.editPhone.text.toString()
+                        user.gender = binding.editGender.text.toString()
 
-            Firebase.firestore.collection(USER_NODE).document(Firebase.auth.currentUser!!.uid)
-                .set(user).addOnSuccessListener {
-                    findNavController().popBackStack()
-                    Toast.makeText(requireContext(), "Saved Successfully", Toast.LENGTH_SHORT).show()
+                        Firebase.firestore.collection(USER_NODE)
+                            .document(Firebase.auth.currentUser!!.uid)
+                            .set(user).addOnSuccessListener {
+                                findNavController().popBackStack()
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Saved Successfully",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Couldn't save",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                    }
                 }
-                .addOnFailureListener {
-                    Toast.makeText(requireContext(), "Couldn't save", Toast.LENGTH_SHORT).show()
-                }
-        }
+            }
 
-        binding.cancelBtn.setOnClickListener {
-            findNavController().popBackStack()
+            binding.cancelBtn.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 }

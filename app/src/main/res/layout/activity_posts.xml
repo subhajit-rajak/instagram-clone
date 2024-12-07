@@ -71,5 +71,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/caption" />
+
+        <TextView
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tap_to_upload_your_image"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/select_image"
+            app:layout_constraintEnd_toEndOf="@+id/select_image"
+            app:layout_constraintStart_toStartOf="@+id/select_image"
+            app:layout_constraintTop_toTopOf="@+id/select_image"
+            app:layout_constraintVertical_bias="0.72" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
