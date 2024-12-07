@@ -1,6 +1,5 @@
 package com.subhajitrajak.instagramclone.screens.global
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,7 +16,6 @@ import com.subhajitrajak.instagramclone.databinding.FragmentPostSettingsBinding
 import com.subhajitrajak.instagramclone.utils.POST
 import com.subhajitrajak.instagramclone.utils.POST_ID
 import com.subhajitrajak.instagramclone.utils.USER_ID
-import kotlin.math.log
 
 
 class PostSettings : BottomSheetDialogFragment() {

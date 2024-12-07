@@ -15,6 +15,7 @@ import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.databinding.ActivityLoginBinding
 
+@Suppress("DEPRECATION")
 class Login : AppCompatActivity() {
     private val binding by lazy {
         ActivityLoginBinding.inflate(layoutInflater)

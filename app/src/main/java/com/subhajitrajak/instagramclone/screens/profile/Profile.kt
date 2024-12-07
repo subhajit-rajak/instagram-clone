@@ -1,5 +1,6 @@
 package com.subhajitrajak.instagramclone.screens.profile
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.net.Uri
@@ -57,6 +58,7 @@ class Profile : Fragment() {
         }
     }
 
+    @SuppressLint("InflateParams")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

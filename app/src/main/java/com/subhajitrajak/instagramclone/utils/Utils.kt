@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.subhajitrajak.instagramclone.utils
 
 import android.app.ProgressDialog
@@ -10,7 +12,7 @@ import com.subhajitrajak.instagramclone.models.User
 import java.util.UUID
 
 fun uploadImage(uri: Uri, folderName: String, callback:(String?)-> Unit) {
-    var imageUrl:String?=null
+    var imageUrl:String?
     FirebaseStorage.getInstance().getReference(folderName).child(UUID.randomUUID().toString())
         .putFile(uri)
         .addOnSuccessListener {

@@ -75,6 +75,9 @@
         <action
             android:id="@+id/action_viewPost_to_postSettings"
             app:destination="@id/postSettings" />
+        <action
+            android:id="@+id/action_viewPost_to_comments"
+            app:destination="@id/comments" />
     </fragment>
     <fragment
         android:id="@+id/myPosts"

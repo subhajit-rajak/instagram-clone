@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.subhajitrajak.instagramclone.screens.global
 
 import android.content.Intent
@@ -9,9 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.github.marlonlom.utilities.timeago.TimeAgo
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
@@ -21,6 +26,7 @@ import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.databinding.FragmentViewPostBinding
 import com.subhajitrajak.instagramclone.models.Post
 import com.subhajitrajak.instagramclone.models.User
+import com.subhajitrajak.instagramclone.utils.COMMENTS
 import com.subhajitrajak.instagramclone.utils.POST
 import com.subhajitrajak.instagramclone.utils.POST_ID
 import com.subhajitrajak.instagramclone.utils.USER_ID
@@ -72,9 +78,39 @@ class ViewPost : Fragment() {
                     binding.time.text = TimeAgo.using(post.time)
 
                     handleShareIntent(post.postUrl)
-                    handlePostLikes(postRef, post.uid)
+                    handlePostLikes(postRef, Firebase.auth.currentUser!!.uid)
+                    handlePostComments(postRef, post.uid, post.postId)
                 }
             }
+        }
+    }
+
+    private fun handlePostComments(postRef: DocumentReference, userId: String, postId: String) {
+        postRef.get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()) {
+                val comments = documentSnapshot.get(COMMENTS) as? List<Map<String, Any>>
+                if (comments != null) {
+                    binding.commentCount.text = comments.size.toString()
+                } else {
+                    binding.commentCount.text = R.string._0.toString()
+                }
+            } else {
+                binding.commentCount.text = R.string._0.toString()
+            }
+        }
+
+        binding.comments.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("postId", postId)
+            bundle.putString("userId", userId)
+            findNavController().navigate(R.id.action_viewPost_to_comments, bundle)
+        }
+
+        binding.comment.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("postId", postId)
+            bundle.putString("userId", userId)
+            findNavController().navigate(R.id.action_viewPost_to_comments, bundle)
         }
     }
 

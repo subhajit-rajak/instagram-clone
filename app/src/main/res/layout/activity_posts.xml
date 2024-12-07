@@ -45,6 +45,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="56dp"
             android:layout_marginEnd="20dp"
+            android:autofillHints="null"
             android:background="@drawable/edit_text_shape"
             android:ems="10"
             android:hint="@string/write_a_caption"
