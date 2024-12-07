@@ -24,7 +24,7 @@ fun uploadImage(uri: Uri, folderName: String, callback:(String?)-> Unit) {
 }
 
 fun uploadVideo(uri: Uri, folderName: String, progressDialog: ProgressDialog, callback:(String?)-> Unit) {
-    var imageUrl:String?=null
+    var imageUrl:String?
     progressDialog.setTitle("Uploading...")
     progressDialog.show()
 
