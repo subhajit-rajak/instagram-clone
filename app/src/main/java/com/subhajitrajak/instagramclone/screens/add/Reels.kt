@@ -13,6 +13,7 @@ import com.subhajitrajak.instagramclone.Home
 import com.subhajitrajak.instagramclone.models.Reel
 import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.databinding.ActivityReelsBinding
+import com.subhajitrajak.instagramclone.utils.POST
 import com.subhajitrajak.instagramclone.utils.REEL
 import com.subhajitrajak.instagramclone.utils.REEL_FOLDER
 import com.subhajitrajak.instagramclone.utils.USER_NODE
@@ -23,18 +24,17 @@ class Reels : AppCompatActivity() {
         ActivityReelsBinding.inflate(layoutInflater)
     }
     private lateinit var videoUrl: String
-    private lateinit var progressDialog : ProgressDialog
-    private val launcher = registerForActivityResult(ActivityResultContracts.GetContent()) {
-            uri->
+    private lateinit var progressDialog: ProgressDialog
+    private val launcher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         uri?.let {
-            uploadVideo(uri, REEL_FOLDER, progressDialog) {
-                    url->
-                if(url!=null) {
-                    videoUrl=url
+            uploadVideo(uri, REEL_FOLDER, progressDialog) { url ->
+                if (url != null) {
+                    videoUrl = url
                 }
             }
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -55,19 +55,30 @@ class Reels : AppCompatActivity() {
 
         binding.shareBtn.setOnClickListener {
             val userId = Firebase.auth.currentUser!!.uid
-            Firebase.firestore.collection(USER_NODE).document(userId).get().addOnSuccessListener {
-                val user :User = it.toObject<User>()!!
-                val reel = Reel(
-                    reelUrl = videoUrl,
-                    caption = binding.caption.text.toString(),
-                    userId = userId)
-                Firebase.firestore.collection(REEL).document().set(reel).addOnSuccessListener {
-                    Firebase.firestore.collection(Firebase.auth.currentUser!!.uid+ REEL).document().set(reel).addOnSuccessListener {
-                        startActivity(Intent(this@Reels, Home::class.java))
-                        finish()
-                    }
-                }
+            val reelId = Firebase.firestore.collection(REEL).document().id
+
+            val reel = Reel(
+                reelUrl = videoUrl,
+                caption = binding.caption.text.toString(),
+                userId = userId,
+                time = System.currentTimeMillis(),
+                reelId = reelId
+            ).apply {
+                this.reelId = reelId
             }
+            Firebase.firestore.collection(REEL)
+                .document(reelId)
+                .set(reel)
+                .addOnSuccessListener {
+                    Firebase.firestore.collection(userId + REEL)
+                        .document(reelId)
+                        .set(reel)
+                        .addOnSuccessListener {
+                            startActivity(Intent(this@Reels, Home::class.java))
+                            finish()
+                        }
+                }
+
         }
     }
 }

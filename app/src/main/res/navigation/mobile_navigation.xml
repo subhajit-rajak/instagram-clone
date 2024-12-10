@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_reel_to_profile"
             app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_reel_to_comments"
+            app:destination="@id/comments" />
     </fragment>
     <fragment
         android:id="@+id/profile"

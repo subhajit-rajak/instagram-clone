@@ -19,6 +19,9 @@ import com.subhajitrajak.instagramclone.models.Comment
 import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.utils.COMMENTS
 import com.subhajitrajak.instagramclone.utils.POST
+import com.subhajitrajak.instagramclone.utils.POST_ID
+import com.subhajitrajak.instagramclone.utils.TYPE
+import com.subhajitrajak.instagramclone.utils.USER_ID
 import com.subhajitrajak.instagramclone.utils.USER_NODE
 
 class Comments : BottomSheetDialogFragment() {
@@ -35,17 +38,18 @@ class Comments : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val postId = arguments?.getString("postId")
-        val userId = arguments?.getString("userId")
+        val type = arguments?.getString(TYPE)
+        val postId = arguments?.getString(POST_ID)
+        val userId = arguments?.getString(USER_ID)
         Log.e("TAG", "Post id: $postId")
         Log.e("TAG", "User id: $userId")
-        if (postId != null && userId!=null) fetchComments(postId, userId)
+        if (postId != null && userId!=null && type!=null) fetchComments(postId, userId, type)
 
         binding.postComment.setOnClickListener {
             val commentText = binding.addComment.text.toString()
             if (commentText.isNotEmpty()) {
                 val comment = Comment(Firebase.auth.currentUser!!.uid, commentText, System.currentTimeMillis())
-                val postRef = Firebase.firestore.collection(POST).document(postId!!)
+                val postRef = Firebase.firestore.collection(type!!).document(postId!!)
                 postRef.update(COMMENTS, FieldValue.arrayUnion(comment)).addOnSuccessListener {
                     binding.addComment.text.clear()
                 }
@@ -61,8 +65,8 @@ class Comments : BottomSheetDialogFragment() {
             }
     }
 
-    private fun fetchComments(postId: String, userId: String) {
-        val postRef = Firebase.firestore.collection(POST).document(postId)
+    private fun fetchComments(postId: String, userId: String, type: String) {
+        val postRef = Firebase.firestore.collection(type).document(postId)
         postRef.get().addOnSuccessListener { documentSnapshot ->
             if (documentSnapshot.exists()) {
                 val commentsArray = documentSnapshot.get(COMMENTS) as? List<Map<String, Any>>

@@ -53,31 +53,29 @@ class Posts : AppCompatActivity() {
         }
 
         binding.shareBtn.setOnClickListener {
-            Firebase.firestore.collection(USER_NODE).document().get().addOnSuccessListener {
-                val user = it.toObject<User>()
-                val postId = Firebase.firestore.collection(POST).document().id
+            val postId = Firebase.firestore.collection(POST).document().id
 
-                val post = Post(
-                    postUrl = imageUrl!!,
-                    caption = binding.caption.text.toString(),
-                    name = Firebase.auth.currentUser!!.uid,
-                    time = System.currentTimeMillis(),
-                    postId = postId
-                ).apply {
-                    this.postId = postId
+            val post = Post(
+                postUrl = imageUrl!!,
+                caption = binding.caption.text.toString(),
+                userId = Firebase.auth.currentUser!!.uid,
+                time = System.currentTimeMillis(),
+                postId = postId
+            ).apply {
+                this.postId = postId
+            }
+
+            Firebase.firestore.collection(POST).document(postId).set(post)
+                .addOnSuccessListener {
+                    Firebase.firestore.collection(Firebase.auth.currentUser!!.uid)
+                        .document(postId)
+                        .set(post)
+                        .addOnSuccessListener {
+                            startActivity(Intent(this@Posts, Home::class.java))
+                            finish()
+                        }
                 }
 
-                Firebase.firestore.collection(POST).document(postId).set(post)
-                    .addOnSuccessListener {
-                        Firebase.firestore.collection(Firebase.auth.currentUser!!.uid)
-                            .document(postId)
-                            .set(post)
-                            .addOnSuccessListener {
-                                startActivity(Intent(this@Posts, Home::class.java))
-                                finish()
-                            }
-                    }
-            }
         }
     }
 }

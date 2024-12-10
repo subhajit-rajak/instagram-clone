@@ -49,6 +49,10 @@ class EditProfile : Fragment() {
 
         user = User()
 
+        binding.cancelBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         Firebase.firestore.collection(USER_NODE).document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener {
                 user = it.toObject<User>()!!
@@ -82,7 +86,7 @@ class EditProfile : Fragment() {
                 ).show()
             } else {
                 usernameAlreadyExists(username) { exists ->
-                    if (exists) {
+                    if (exists && username != user.username) {
                         Toast.makeText(
                             requireContext(),
                             "The username $username is not available",
@@ -117,10 +121,6 @@ class EditProfile : Fragment() {
                             }
                     }
                 }
-            }
-
-            binding.cancelBtn.setOnClickListener {
-                findNavController().popBackStack()
             }
         }
     }

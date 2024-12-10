@@ -24,6 +24,10 @@ import com.subhajitrajak.instagramclone.R
 import com.subhajitrajak.instagramclone.databinding.PostItemHomeBinding
 import com.subhajitrajak.instagramclone.utils.COMMENTS
 import com.subhajitrajak.instagramclone.utils.POST
+import com.subhajitrajak.instagramclone.utils.POST_ID
+import com.subhajitrajak.instagramclone.utils.REEL
+import com.subhajitrajak.instagramclone.utils.TYPE
+import com.subhajitrajak.instagramclone.utils.USER_ID
 import com.subhajitrajak.instagramclone.utils.USER_NODE
 
 
@@ -108,15 +112,17 @@ class PostAdapter(var context: Context, private var postList: ArrayList<Post>) :
 
         holder.binding.comments.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("postId", postId)
-            bundle.putString("userId", userId)
+            bundle.putString(TYPE, POST)
+            bundle.putString(POST_ID, postId)
+            bundle.putString(USER_ID, userId)
             holder.itemView.findNavController().navigate(R.id.action_home_to_comments, bundle)
         }
 
         holder.binding.comment.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("postId", postId)
-            bundle.putString("userId", userId)
+            bundle.putString(TYPE, POST)
+            bundle.putString(POST_ID, postId)
+            bundle.putString(USER_ID, userId)
             holder.itemView.findNavController().navigate(R.id.action_home_to_comments, bundle)
         }
     }

@@ -51,14 +51,6 @@
 
         <include layout="@layout/search_rv_design_shimmer"/>
 
-        <include layout="@layout/search_rv_design_shimmer"/>
-
-        <include layout="@layout/search_rv_design_shimmer"/>
-
-        <include layout="@layout/search_rv_design_shimmer"/>
-
-        <include layout="@layout/search_rv_design_shimmer"/>
-
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView

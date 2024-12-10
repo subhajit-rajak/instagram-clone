@@ -27,6 +27,7 @@ import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.utils.COMMENTS
 import com.subhajitrajak.instagramclone.utils.POST
 import com.subhajitrajak.instagramclone.utils.POST_ID
+import com.subhajitrajak.instagramclone.utils.TYPE
 import com.subhajitrajak.instagramclone.utils.USER_ID
 import com.subhajitrajak.instagramclone.utils.USER_NODE
 
@@ -99,15 +100,16 @@ class ViewPost : Fragment() {
 
         binding.comments.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("postId", postId)
-            bundle.putString("userId", userId)
+            bundle.putString(TYPE, POST)
+            bundle.putString(POST_ID, postId)
+            bundle.putString(USER_ID, userId)
             findNavController().navigate(R.id.action_viewPost_to_comments, bundle)
         }
 
         binding.comment.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("postId", postId)
-            bundle.putString("userId", userId)
+            bundle.putString(POST_ID, postId)
+            bundle.putString(USER_ID, userId)
             findNavController().navigate(R.id.action_viewPost_to_comments, bundle)
         }
     }

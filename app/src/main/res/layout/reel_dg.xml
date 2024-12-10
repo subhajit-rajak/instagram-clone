@@ -131,7 +131,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:text="40.5K"
+            android:text="@string/_0"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toTopOf="@id/more_settings"
             app:layout_constraintEnd_toEndOf="@+id/more_settings"
@@ -153,7 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:text="1,089"
+            android:text="@string/_0"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toTopOf="@id/share_image"
             app:layout_constraintEnd_toEndOf="@+id/more_settings"
@@ -175,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:text="387K"
+            android:text="@string/_0"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toTopOf="@id/comment_image"
             app:layout_constraintEnd_toEndOf="@+id/more_settings"
@@ -186,11 +186,10 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/heart"
+            android:src="@drawable/heart_outlined_white"
             app:layout_constraintBottom_toTopOf="@id/likes"
             app:layout_constraintEnd_toEndOf="@+id/more_settings"
-            app:layout_constraintStart_toStartOf="@+id/more_settings"
-            app:tint="#FFFFFF" />
+            app:layout_constraintStart_toStartOf="@+id/more_settings" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

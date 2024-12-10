@@ -15,10 +15,10 @@ class Post {
         this.caption = caption
     }
 
-    constructor(postUrl: String, caption: String, name: String, time: Long, postId: String) {
+    constructor(postUrl: String, caption: String, userId: String, time: Long, postId: String) {
         this.postUrl = postUrl
         this.caption = caption
-        this.uid = name
+        this.uid = userId
         this.time = time
         this.postId = postId
     }

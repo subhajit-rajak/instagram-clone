@@ -27,12 +27,22 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.navigation.findNavController
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldValue
+import com.subhajitrajak.instagramclone.utils.COMMENTS
 import com.subhajitrajak.instagramclone.utils.FOLLOWINGS
+import com.subhajitrajak.instagramclone.utils.POST_ID
+import com.subhajitrajak.instagramclone.utils.REEL
+import com.subhajitrajak.instagramclone.utils.TYPE
+import com.subhajitrajak.instagramclone.utils.USER_ID
 
 
-class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
+class ReelAdapter(
+    private val context: Context,
+    private var reelList: ArrayList<Reel>,
+    private val exoPlayer: ExoPlayer
+) :
     RecyclerView.Adapter<ReelAdapter.ViewHolder>() {
-    private var exoPlayer: ExoPlayer? = null
 
     inner class ViewHolder(var binding: ReelDgBinding) : RecyclerView.ViewHolder(binding.root) {
         val hideHandler = Handler(Looper.getMainLooper())
@@ -50,21 +60,20 @@ class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var user = User()
+        var user: User
         val userId = reelList[position].userId
-        if (userId != null) {
-            Firebase.firestore.collection(USER_NODE).document(userId).get()
-                .addOnSuccessListener {
-                    user = it.toObject<User>()!!
-                    if (!user.image.isNullOrEmpty()) {
-                        Picasso.get().load(user.image).placeholder(R.drawable.profile)
-                            .into(holder.binding.profileImage)
-                    }
-                    holder.binding.usernameReel.text = user.username
 
-                    setupFollowBottom(user, holder)
+        Firebase.firestore.collection(USER_NODE).document(userId).get()
+            .addOnSuccessListener {
+                user = it.toObject<User>()!!
+                if (!user.image.isNullOrEmpty()) {
+                    Picasso.get().load(user.image).placeholder(R.drawable.profile)
+                        .into(holder.binding.profileImage)
                 }
-        }
+                holder.binding.usernameReel.text = user.username
+
+                setupFollowBottom(user, holder)
+            }
 
         holder.binding.usernameReel.setOnClickListener {
             val bundle = Bundle()
@@ -93,13 +102,12 @@ class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
         val reel = reelList[position]
         holder.binding.captionReel.text = reel.caption
 
-        releasePlayer()
-        exoPlayer = ExoPlayer.Builder(context).build().apply {
+        exoPlayer.apply {
             setMediaItem(MediaItem.fromUri(Uri.parse(reel.reelUrl)))
             repeatMode = ExoPlayer.REPEAT_MODE_ALL
             prepare()
-            playWhenReady = true
             holder.binding.playerView.player = this
+            playWhenReady = true
         }
 
         var isMuted = false
@@ -108,7 +116,7 @@ class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
         holder.binding.playerView.setOnClickListener {
             if (!isLongPressPaused) {
                 isMuted = !isMuted
-                exoPlayer?.volume = if (isMuted) 0f else 1f
+                exoPlayer.volume = if (isMuted) 0f else 1f
                 holder.binding.muteButton.setImageResource(
                     if (isMuted)
                         R.drawable.volume_off
@@ -122,7 +130,7 @@ class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
         // Long press to pause the video
         holder.binding.playerView.setOnLongClickListener {
             isLongPressPaused = true
-            exoPlayer?.pause()
+            exoPlayer.pause()
             true
         }
 
@@ -130,22 +138,22 @@ class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
         holder.binding.playerView.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP && isLongPressPaused) {
                 isLongPressPaused = false
-                exoPlayer?.play()
+                exoPlayer.play()
             }
             false
         }
 
-        exoPlayer?.addListener(object : Player.Listener {
+        exoPlayer.addListener(object : Player.Listener {
             override fun onPlaybackStateChanged(playbackState: Int) {
                 if (playbackState == Player.STATE_READY) {
-                    holder.binding.seekBar.max = exoPlayer?.duration?.toInt() ?: 0
+                    holder.binding.seekBar.max = exoPlayer.duration.toInt() ?: 0
                 }
             }
         })
 
         val updateSeekBar = object : Runnable {
             override fun run() {
-                holder.binding.seekBar.progress = exoPlayer?.currentPosition?.toInt() ?: 0
+                holder.binding.seekBar.progress = exoPlayer.currentPosition.toInt() ?: 0
                 holder.binding.seekBar.postDelayed(this, 0)
             }
         }
@@ -153,18 +161,101 @@ class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
 
         holder.binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                if(fromUser) {
-                    exoPlayer?.seekTo(progress.toLong())
+                if (fromUser) {
+                    exoPlayer.seekTo(progress.toLong())
                 }
             }
+
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
 
         })
+
+        val reelRef = Firebase.firestore.collection(REEL).document(reelList[position].reelId)
+        val currentUserId = Firebase.auth.currentUser!!.uid
+        handlePostLikes(holder, reelRef, currentUserId)
+        handlePostComments(holder, reelRef, reelList[position].userId, reelList[position].reelId)
     }
 
+    private fun handlePostComments(
+        holder: ViewHolder,
+        reelRef: DocumentReference,
+        userId: String,
+        reelId: String
+    ) {
+        reelRef.get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()) {
+                // Retrieve the current comments list
+                val comments = documentSnapshot.get(COMMENTS) as? List<Map<String, Any>>
+                if (comments != null) {
+                    holder.binding.comments.text = comments.size.toString()
+                } else {
+                    holder.binding.comments.text = R.string._0.toString()
+                }
+            } else {
+                holder.binding.comments.text = R.string._0.toString()
+            }
+        }
+
+        holder.binding.comments.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString(TYPE, REEL)
+            bundle.putString(POST_ID, reelId)
+            bundle.putString(USER_ID, userId)
+            holder.itemView.findNavController().navigate(R.id.action_reel_to_comments, bundle)
+        }
+
+        holder.binding.commentImage.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString(TYPE, REEL)
+            bundle.putString(POST_ID, reelId)
+            bundle.putString(USER_ID, userId)
+            holder.itemView.findNavController().navigate(R.id.action_reel_to_comments, bundle)
+        }
+    }
+
+    private fun handlePostLikes(
+        holder: ViewHolder,
+        reelRef: DocumentReference,
+        userId: String
+    ) {
+
+        var isLiked = false
+
+        reelRef.get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()) {
+                // Retrieve the current likes map
+                val likesMap = documentSnapshot.get("likes") as? Map<String, Boolean> ?: emptyMap()
+                isLiked = likesMap.containsKey(userId)
+                holder.binding.likes.text = likesMap.count { it.value }.toString()
+
+                holder.binding.likeImage.setImageResource(if (isLiked) R.drawable.heart_filled else R.drawable.heart)
+            } else {
+                isLiked = false
+                holder.binding.likes.text = R.string._0.toString()
+                holder.binding.likeImage.setImageResource(R.drawable.heart)
+            }
+        }
+
+        holder.binding.likeImage.setOnClickListener {
+            if (isLiked) {
+                holder.binding.likeImage.setImageResource(R.drawable.heart)
+                holder.binding.likes.text =
+                    holder.binding.likes.text.toString().toInt().minus(1).toString()
+                reelRef.update("likes.$userId", FieldValue.delete())
+            } else {
+                holder.binding.likeImage.setImageResource(R.drawable.heart_filled)
+                holder.binding.likes.text =
+                    holder.binding.likes.text.toString().toInt().plus(1).toString()
+                reelRef.update("likes.$userId", true)
+            }
+            isLiked = !isLiked
+        }
+    }
+
+
     private fun setupFollowBottom(user: User, holder: ViewHolder) {
-        if(user.userId == Firebase.auth.currentUser!!.uid) {
+        if (user.userId == Firebase.auth.currentUser!!.uid) {
             holder.binding.followBtn.visibility = View.GONE
         } else {
             var isFollowed = false
@@ -173,7 +264,7 @@ class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
                     if (it.documents.size == 0) {
                         isFollowed = false
                     } else {
-                        holder.binding.followBtn.text = "Following"
+                        holder.binding.followBtn.text = context.getString(R.string.following_)
                         isFollowed = true
                     }
                 }
@@ -183,13 +274,13 @@ class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
                         .whereEqualTo("email", user.email).get().addOnSuccessListener {
                             Firebase.firestore.collection(Firebase.auth.currentUser!!.uid + FOLLOWINGS)
                                 .document(it.documents[0].id).delete()
-                            holder.binding.followBtn.text = "Follow"
+                            holder.binding.followBtn.text = context.getString(R.string.follow)
                             isFollowed = false
                         }
                 } else {
                     Firebase.firestore.collection(Firebase.auth.currentUser!!.uid + FOLLOWINGS)
                         .document().set(user).addOnSuccessListener {
-                            holder.binding.followBtn.text = "Following"
+                            holder.binding.followBtn.text = context.getString(R.string.following_)
                             isFollowed = true
                         }
                 }
@@ -211,7 +302,6 @@ class ReelAdapter(var context: Context, private var reelList: ArrayList<Reel>) :
     }
 
     fun releasePlayer() {
-        exoPlayer?.release()
-        exoPlayer = null
+        exoPlayer.release()
     }
 }
