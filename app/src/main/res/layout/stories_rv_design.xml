@@ -1,42 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/storyRing"
-        android:layout_width="74dp"
-        android:layout_height="74dp"
-        android:layout_marginStart="16dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/insta_story_ring"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/image_tab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:layout_width="68dp"
-        android:layout_height="68dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/insta_story_ring_stroke"
-        app:layout_constraintBottom_toBottomOf="@+id/storyRing"
-        app:layout_constraintEnd_toEndOf="@+id/storyRing"
-        app:layout_constraintStart_toStartOf="@+id/storyRing"
-        app:layout_constraintTop_toTopOf="@+id/storyRing"
-        tools:ignore="ContentDescription" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profilePic"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/profile"
-        app:layout_constraintBottom_toBottomOf="@+id/storyRing"
-        app:layout_constraintEnd_toEndOf="@+id/storyRing"
-        app:layout_constraintStart_toStartOf="@+id/storyRing"
-        app:layout_constraintTop_toTopOf="@+id/storyRing" />
+            <ImageView
+                android:id="@+id/storyRing"
+                android:layout_width="74dp"
+                android:layout_height="74dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/insta_story_ring"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:layout_width="67.5dp"
+                android:layout_height="67.5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/insta_story_ring_stroke"
+                app:layout_constraintBottom_toBottomOf="@+id/storyRing"
+                app:layout_constraintEnd_toEndOf="@+id/storyRing"
+                app:layout_constraintStart_toStartOf="@+id/storyRing"
+                app:layout_constraintTop_toTopOf="@+id/storyRing"
+                tools:ignore="ContentDescription" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profilePic"
+                android:layout_width="61dp"
+                android:layout_height="61dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile"
+                app:layout_constraintBottom_toBottomOf="@+id/storyRing"
+                app:layout_constraintEnd_toEndOf="@+id/storyRing"
+                app:layout_constraintStart_toStartOf="@+id/storyRing"
+                app:layout_constraintTop_toTopOf="@+id/storyRing" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/username"
@@ -46,8 +69,8 @@
         android:text="@string/sampleUsername"
         android:textColor="@color/black"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/storyRing"
-        app:layout_constraintStart_toStartOf="@+id/storyRing"
-        app:layout_constraintTop_toBottomOf="@+id/storyRing" />
+        app:layout_constraintEnd_toEndOf="@+id/image_tab"
+        app:layout_constraintStart_toStartOf="@+id/image_tab"
+        app:layout_constraintTop_toBottomOf="@+id/image_tab" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
