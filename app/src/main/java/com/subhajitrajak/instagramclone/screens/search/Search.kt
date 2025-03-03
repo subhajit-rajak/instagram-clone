@@ -1,24 +1,28 @@
 package com.subhajitrajak.instagramclone.screens.search
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
-import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.databinding.FragmentSearchBinding
+import com.subhajitrajak.instagramclone.models.User
 import com.subhajitrajak.instagramclone.utils.USER_NODE
 
 class Search : Fragment() {
-    private lateinit var binding: FragmentSearchBinding
     private lateinit var adapter: SearchAdapter
     private var userList = ArrayList<User>()
+    private lateinit var binding: FragmentSearchBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,9 +31,18 @@ class Search : Fragment() {
         return binding.root
     }
 
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.searchView.requestFocus()
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(binding.searchView, InputMethodManager.SHOW_IMPLICIT)
+
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         binding.rv.visibility = View.GONE
         binding.shimmerRv.startShimmer()
@@ -81,5 +94,11 @@ class Search : Fragment() {
                     }
                 }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(binding.searchView, InputMethodManager.SHOW_IMPLICIT)
     }
 }

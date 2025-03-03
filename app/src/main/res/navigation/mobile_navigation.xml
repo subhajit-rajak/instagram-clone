@@ -20,13 +20,13 @@
             app:destination="@id/comments" />
     </fragment>
     <fragment
-        android:id="@+id/search"
-        android:name="com.subhajitrajak.instagramclone.screens.search.Search"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        android:id="@+id/explore"
+        android:name="com.subhajitrajak.instagramclone.screens.search.Explore"
+        android:label="fragment_explore"
+        tools:layout="@layout/fragment_explore">
         <action
-            android:id="@+id/action_search_to_viewProfile"
-            app:destination="@id/viewProfile" />
+            android:id="@+id/action_explore_to_search"
+            app:destination="@id/search" />
     </fragment>
     <dialog
         android:id="@+id/add"
@@ -117,4 +117,13 @@
             android:id="@+id/action_postSettings_to_profile"
             app:destination="@id/profile" />
     </dialog>
+    <fragment
+        android:id="@+id/search"
+        android:name="com.subhajitrajak.instagramclone.screens.search.Search"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_search_to_viewProfile"
+            app:destination="@id/viewProfile" />
+    </fragment>
 </navigation>

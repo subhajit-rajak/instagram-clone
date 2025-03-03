@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,22 +8,34 @@
     android:background="@color/white"
     tools:context=".screens.search.Search">
 
+    <ImageView
+        android:id="@+id/back_btn"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/back_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/searchView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/searchView"
+        app:tint="@color/black" />
+
     <EditText
         android:id="@+id/searchView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:autofillHints="username"
+        android:background="@drawable/edit_text_shape"
+        android:hint="@string/search_text"
         android:inputType="text"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
-        android:hint="@string/search"
         android:textColorHint="@color/text_box_hint_text"
-        android:background="@drawable/edit_text_shape"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/back_btn"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="VisualLintTextFieldSize" />
 

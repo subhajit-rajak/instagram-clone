@@ -66,4 +66,5 @@
     <string name="delete">Delete</string>
     <string name="follow">Follow</string>
     <string name="following_">Following</string>
+    <string name="search_text">Search \"username\"</string>
 </resources>

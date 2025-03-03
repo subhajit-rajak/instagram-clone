@@ -26,12 +26,14 @@ class Posts : AppCompatActivity() {
     private var imageUrl: String? = null
     private val launcher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         binding.loading.text = getString(R.string.uploading)
+        binding.shareBtn.isEnabled = false
         uri?.let {
             uploadImage(uri, POST_FOLDER) { url ->
                 if (url != null) {
                     imageUrl = url
                     binding.selectImage.setImageURI(uri)
                     binding.loading.visibility = View.GONE
+                    binding.shareBtn.isEnabled  = true
                 }
             }
         }
